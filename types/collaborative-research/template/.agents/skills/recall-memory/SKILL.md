@@ -1,0 +1,16 @@
+---
+name: recall-memory
+description: Retrieve relevant saved research information and user conclusions for recall questions, research that depends on prior work, or resuming after a fresh session or compaction. This workflow reads memory without changing it.
+---
+
+# Recall Research Memory
+
+The project root is three directories above this skill folder. Read its `rules.md`, especially Reading and Research, and resolve paths from that root. This is a read-only workflow: do not update state, memory, links, or settings as a side effect of recall.
+
+1. Identify what the user wants to recall or investigate: their saved view, prior evidence, or the current research position. Extract subjects, alternative names, related concepts, and any time or scope constraints. Translate search terms into English when the request uses another language; do not translate or rewrite saved files.
+2. Use the README map and Current State as starting points, not complete inventories. Search filenames, headings, and text in `nodes/` and `conclusions/`, including relevant conclusions not linked from the map or current node. Prefer `rg --files` and targeted `rg -n -i` searches, or available file-search equivalents. If exact terms fail, try a small set of synonyms, abbreviations, and related entities before concluding that no matching record was found.
+3. Read candidate short notes and conclusions in full to check relevance, context, and uncertainty. Follow meaningful connections when they help answer the question. Retrieve relevant entries from `agent-memory/insights.md` (or topic files) and applicable preferences from `agent-memory/user.md` as needed. Open linked details or evidence when the answer needs verification or depth. If short-note searches leave a material gap, search relevant detail headings and content directly, then read candidate passages. Do not bulk-load the vault, long Research Trail, or `work/`.
+4. Apply the conclusion-priority rules in `rules.md`. Preserve the user's saved thought faithfully, including broad or tentative wording. Separate it from agent hypotheses and current evidence. If material evidence challenges a conclusion, explain the mismatch and its scope without silently narrowing, strengthening, marking obsolete, or editing the saved thought. For factual reassessment, verify relevant evidence rather than treating remembered claims as proof.
+5. Answer with the relevant saved position or information and references to the actual notes. Distinguish current and historical records when known; show conflicting user thoughts without silently choosing a replacement. Say "I did not find a matching saved record" when appropriate, rather than claiming the user never thought or discussed it. Disclose material gaps such as an unreadable note or missing evidence. Ask for clarification only if ambiguity would materially change the answer.
+
+Use this workflow when prior memory matters, not for every unrelated or simple conversational reply. It does not search other projects, native app memory, or old chats by default. If the user asks to change an existing conclusion, use `update-memory` with its exact preview-and-approval workflow; retrieval itself grants no write approval.

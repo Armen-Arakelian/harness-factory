@@ -1,0 +1,18 @@
+# Personal machine configuration (never distribute this file).
+/.factory.local.json
+/.obsidian/
+/work/
+.DS_Store
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# SSH and local authentication files must remain on this computer.
+.ssh/
+id_ed25519*
+id_rsa*
+/.codex/auth.json

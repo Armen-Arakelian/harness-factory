@@ -1,0 +1,10 @@
+{
+  "display_name": "Collaborative Research",
+  "description": "Deep, critical research with an AI partner and user-controlled permanent memory in Codex and Obsidian.",
+  "parameters": {
+    "topic": {
+      "help": "Research question or subject to investigate",
+      "token": "RESEARCH_TOPIC"
+    }
+  }
+}

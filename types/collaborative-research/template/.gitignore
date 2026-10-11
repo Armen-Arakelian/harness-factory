@@ -1,0 +1,14 @@
+# Temporary output is local; memory and research instructions are tracked.
+/work/*
+!/work/.gitkeep
+/.factory.local.json
+/.obsidian/workspace*.json
+/.obsidian/cache/
+.DS_Store
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
