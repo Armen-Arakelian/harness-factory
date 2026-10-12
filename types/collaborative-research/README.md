@@ -1,115 +1,60 @@
 # Collaborative Research
 
-A research partnership between the user and an AI assistant, with independent judgment, iterative investigation, a curated graph controlled by the user, and separate project-local agent working memory.
+A template for ongoing research with an AI partner and an Obsidian graph. The assistant examines evidence, challenges assumptions and helps build understanding over time. You choose what enters your permanent memory.
 
-## Quick Start
+## Start
 
-Use this template for an ongoing investigation where your saved understanding matters across chats. Ask the Factory to create a project with a name, topic, and destination. Open the result in Codex and Obsidian. Discuss and research normally; approve specific notes before saving them, initiate your own conclusions, and request GitHub backups when needed.
+Ask Factory to create a project with a name, topic and destination, then open its folder in Codex and Obsidian. For installation, project creation commands and GitHub setup, see the [Factory user guide](../../docs/USER_GUIDE.md). No community Obsidian plugins are required.
 
-For tools, SSH, GitHub, and personal Factory configuration, start with [the Factory user guide](../../docs/USER_GUIDE.md). The complete template instructions follow below.
+Start with a question, for example:
 
-## Purpose
+> Investigate whether tokenized Tesla shares track the ordinary share price, including exceptions and limitations.
 
-Explore questions deeply, critically assess assumptions and evidence, and build understanding over time. The agent does not agree merely to please the user or try to finish every problem in one answer. Saved conclusions represent the user's thoughts and remain open to grounded discussion without silent edits.
+Broad questions can develop across several conversations; the assistant should distinguish evidence, interpretation and uncertainty.
 
-## Type Contents
+## What Gets Saved
 
-- `project.json`: the display name, description, and required `topic` parameter.
-- `template/`: the complete independent project, including research rules, local skills, and Obsidian graph settings. Do not open this blueprint as an active research vault.
-- `template/rules.md`: the single source for this type's research and memory rules. Edit here to change future projects; there is no factory-wide research standard.
+| Location | Purpose |
+|---|---|
+| `nodes/` | Short information notes connected by meaningful links. |
+| `conclusions/` | Your short thoughts and conclusions, initiated by you. |
+| `details/` | Deeper explanations, evidence and limitations. |
+| `README.md` | Entry points and links to saved conclusions. |
+| `agent-memory/` | The assistant's working context, kept separate from your graph. |
+| `work/` | Temporary research output, outside permanent memory. |
 
-## Generated Project
+Notes stay flat and can have many-to-many connections. The assistant starts with relevant short notes and opens deeper material when needed.
 
-```text
-AGENTS.md
-README.md
-rules.md
-nodes/
-conclusions/
-details/
-agent-memory/
-    state.md
-    insights.md
-    user.md
-work/
-.agents/skills/
-    update-memory/SKILL.md
-    create-conclusion/SKILL.md
-    memory-approval/   # shared workflow, Python registry and card asset
-    sync-agent-memory/SKILL.md
-    recall-memory/SKILL.md
-    setup-git/SKILL.md
-    save-project/SKILL.md
-.gitignore
-.obsidian/graph.json
-```
+## Save and Approve
 
-- `nodes/` contains short information notes with meaningful many-to-many connections and no mandatory entity taxonomy.
-- `conclusions/` contains short thoughts initiated only by the user. The agent reads related conclusions before a relevant answer.
-- `details/` contains curated deeper explanations, evidence, methods, and limitations, opened when needed.
-- `README.md` provides a small memory map and links to saved conclusions.
-- `agent-memory/` holds agent-owned state, selective findings and hypotheses, and project-relevant preferences. Automatic milestone updates are limited to this layer; no per-node memory or cross-project sharing is introduced.
-- `work/` holds temporary research output, outside permanent memory.
+Ask **"Save this information as a node"**, **"Save the supporting evidence in details"**, or **"Create a conclusion from this: …"**.
 
-Substantive permanent-memory changes require approval of compact previews showing content and destination. Related connections, reverse links and map entries are maintained automatically after content approval; detailed link previews are available on request. `update-memory` handles information and requested existing-memory changes; `create-conclusion` captures the approved user thought and chooses useful connections. `sync-agent-memory` maintains the separate agent layer under `rules.md`. `recall-memory` retrieves relevant saved information and user conclusions without changing them; it distinguishes the user's important saved understanding from factual certainty. These are agent instructions, not filesystem locks or a background service.
+You receive a compact preview with the exact text and destination. Supported clients show a blue information card or orange conclusion card with **Approve** and **Cancel**; other clients use text approval. After approval, the assistant saves the content and chooses related links automatically. Ask to see the links if you want to review them.
 
-## Create and Open
+Buttons disappear after use. **Approval sent** means the request was sent; the assistant confirms saving separately. Another ordinary message expires the proposal when the agent processes it. Old buttons may remain visible, but expired IDs are rejected. New chats, compaction and restoration require a fresh preview. There is one active proposal per project.
 
-From the Project Factory root:
+Your conclusions matter as records of your understanding, but may be tentative or wrong. The assistant may challenge them with evidence and must not silently rewrite them. Ask to revise a conclusion when your view changes; revisions need approval too. The assistant may suggest information worth saving, but does not invent conclusions on your behalf.
 
-```bash
-python3 scripts/init.py \
-  --type collaborative-research \
-  --name "Urban Trees" \
-  --topic "How urban trees affect summer temperatures" \
-  --destination "../Urban Trees"
-```
+## Recall and Continue
 
-Open the generated folder in Codex and as a vault in Obsidian. No community plugins or ongoing connection to Project Factory are required. New projects contain no example notes or conclusions.
+Ask **"What did I think about this?"** or **"Recall our research on this topic."** The assistant searches relevant notes and conclusions, including unlinked ones, and separates your saved view from its current assessment.
 
-## Graph
+Agent memory has three files: `state.md` for the current question, progress, next step and brief research trail; `insights.md` for agent findings and hypotheses; `user.md` for scoped working preferences. The assistant updates these at meaningful milestones. Say **"Sync agent memory"** to request a checkpoint.
 
-Blue information nodes, orange conclusions, and gray details are defined in `template/.obsidian/graph.json`. The default filter shows only information and conclusions. To include details, use:
+Fresh sessions should recover context from these files. These workflows depend on the agent following instructions; they are not background jobs or filesystem locks. Unsaved chat content is not guaranteed to survive compaction.
+
+## View the Graph
+
+The default graph shows **blue information nodes** and **orange conclusions**. **Gray details** are hidden; to include them, use this graph search filter:
 
 ```text
 path:/^(nodes|conclusions|details)\//
 ```
 
-Colors do not create fixed spatial regions, and standard graph edges do not show relationship labels written in notes. See [Graph view](https://obsidian.md/help/plugins/graph) and [Search](https://obsidian.md/help/plugins/search).
+For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.
 
+## Backup and Reference
 
-## Everyday Research
+GitHub is optional. After connecting a repository, say **"Save this project to GitHub."** Restore by cloning and reopening it; temporary files and chat history are not included. See the [backup instructions](../../docs/USER_GUIDE.md#connect-save-and-restore).
 
-Start with a question, hypothesis, or uncertainty. For example: "Investigate whether tokenized Tesla shares track the ordinary share price, including exceptions and limitations." The assistant should examine evidence deeply, challenge assumptions constructively, distinguish evidence from inference, and refine the question with you. It need not solve a broad research problem in one reply.
-
-Most discussion stays in chat. Large raw research outputs belong in `work/`, not the curated graph. For a reusable result, say "Save this information as a node" or "Save the supporting evidence in details." `update-memory` first previews the content and destination; approval saves that content and permits related mechanical link maintenance. Declining it leaves curated memory unchanged. The assistant may occasionally suggest information/details worth keeping.
-
-For your own thought, say "Create a conclusion from this: …". `create-conclusion` previews a short formulation and destination; connections are chosen automatically after approval. Your approval saves it under `conclusions/`; the assistant does not initiate its own conclusions. These thoughts have high importance for understanding your view, but may be tentative, overbroad, or wrong. New evidence can be discussed critically. Ask to revise an existing conclusion when your view changes; changes still need an approved preview.
-
-## Approval Buttons
-
-The shared `memory-approval` skill records each exact preview and a unique one-use ID in ignored `work/memory-approvals.json`. Supported inline clients show blue information cards or orange conclusion cards with Approve/Cancel, hover highlighting, and buttons that disappear after use. A callback is short, for example `Approve "Chinese Dragon". ID: <id>`. **Approval sent** means a request was sent; the assistant confirms saving separately after validation and writing. Unsupported clients use compact text previews and approval IDs through the same helper. No additional server, Git account or community Obsidian plugin is required.
-
-At the next ordinary message, the agent expires pending proposals before continuing. A later click is rejected by the registry. Fresh chats and compaction expire pending approvals too; ask for a fresh preview to resume. The helper checks known status and content, not chat history. Turn handling still depends on the agent: this template cannot automatically observe every new chat message or disable an old visible button. It is not a filesystem access-control mechanism. Each project has one active proposal; avoid simultaneous pending approvals in multiple chats. The registry is local temporary bookkeeping and is deliberately not restored from Git.
-
-## Recall and Agent Memory
-
-Ask "What did I think about this?" or "Recall our research on this topic." `recall-memory` searches relevant short notes and conclusions, including unlinked conclusions, then opens evidence sections for factual checking and expands searches for gaps or conflicts. Recalling your saved position may need no detail files. It reports saved thoughts faithfully, separates them from factual assessment, and acknowledges when no matching saved record was found.
-
-The assistant may maintain only `agent-memory/` automatically at meaningful milestones. `state.md` contains the checkpoint date, current focus, progress, open questions, a requested or agent-suggested next step, relevant links, and a short chronological research trail. Significant results, direction changes, completed user reviews and requested handoffs trigger checkpoints; ordinary recall stays read-only. `insights.md` holds selective agent findings/hypotheses with their basis. `user.md` holds scoped working preferences, distinguishing explicit instructions from inference. These are not your conclusions, and remain local to this project.
-
-Say "Sync agent memory" to refresh this working layer. State stays concise; older repetitive completed trail entries can be combined without merging your conclusions. A fresh chat or compaction should prompt relevant file recall. These workflows are agent instructions, not guaranteed background jobs or access-control locks. Git stores files, not the full chat history.
-
-## Graph and Reading Depth
-
-Notes are flat rather than nested under one concept: a company can link to both Transfer Agent and Service Provider concepts. Relationships are described beside links. Many notes may support one conclusion, and one note may connect to several conclusions. Short nodes link to deeper `details/` notes so the assistant can start with the overview and deepen only when needed.
-
-The graph defaults to blue nodes and orange conclusions. Gray details are hidden until you include them with the filter shown above. Folders supply grouping/color rules, not fixed visual regions. Agent memory and temporary work are outside this main graph. For focused browsing, open the active note's local graph at depth 1 and expand as useful. No connection-count limit is imposed; new links explain a useful relationship, and existing connections are not automatically pruned. Display depth never limits agent recall.
-
-## GitHub Backup
-
-From Factory, request GitHub setup using your personal configured owner. From the independent project, provide an explicit destination: "Connect this project to a private GitHub repository at OWNER/REPOSITORY." No personal owner is embedded in the blueprint.
-
-After the first setup/backup, say "Save this project to GitHub" to commit and push existing files. The local skills are `setup-git` and `save-project`. Track approved research memory, agent memory, instructions, skills, and graph configuration. Exclude temporary work, credentials, and Obsidian workspace state. Empty `.gitkeep` markers preserve initial folders and are not notes. Saving does not authorize additional memory edits.
-
-Restore by cloning the repository and reopening the folder in Codex and Obsidian. Keep future template upgrades separate from saved research; Factory does not migrate this project automatically.
+The blueprint lives in `template/`. Its [rules](template/rules.md), [agent instructions](template/AGENTS.md) and [local skills](template/.agents/skills/) define the workflow. Edit the blueprint to change future projects; existing research projects require an explicit update.
