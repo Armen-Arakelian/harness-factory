@@ -35,6 +35,7 @@ work/
 .agents/skills/
     update-memory/SKILL.md
     create-conclusion/SKILL.md
+    memory-approval/   # shared workflow, Python registry and card asset
     sync-agent-memory/SKILL.md
     recall-memory/SKILL.md
     setup-git/SKILL.md
@@ -50,7 +51,7 @@ work/
 - `agent-memory/` holds agent-owned state, selective findings and hypotheses, and project-relevant preferences. Automatic milestone updates are limited to this layer; no per-node memory or cross-project sharing is introduced.
 - `work/` holds temporary research output, outside permanent memory.
 
-User-controlled permanent memory changes require approval of exact previews, including links and map edits. `update-memory` handles information and requested existing-memory changes; `create-conclusion` captures the user's thought and approved connections. `sync-agent-memory` maintains the separate agent layer under `rules.md`. `recall-memory` retrieves relevant saved information and user conclusions without changing them; it distinguishes the user's important saved understanding from factual certainty. These are agent instructions, not filesystem locks or a background service.
+Substantive permanent-memory changes require approval of compact previews showing content and destination. Related connections, reverse links and map entries are maintained automatically after content approval; detailed link previews are available on request. `update-memory` handles information and requested existing-memory changes; `create-conclusion` captures the approved user thought and chooses useful connections. `sync-agent-memory` maintains the separate agent layer under `rules.md`. `recall-memory` retrieves relevant saved information and user conclusions without changing them; it distinguishes the user's important saved understanding from factual certainty. These are agent instructions, not filesystem locks or a background service.
 
 ## Create and Open
 
@@ -81,15 +82,21 @@ Colors do not create fixed spatial regions, and standard graph edges do not show
 
 Start with a question, hypothesis, or uncertainty. For example: "Investigate whether tokenized Tesla shares track the ordinary share price, including exceptions and limitations." The assistant should examine evidence deeply, challenge assumptions constructively, distinguish evidence from inference, and refine the question with you. It need not solve a broad research problem in one reply.
 
-Most discussion stays in chat. Large raw research outputs belong in `work/`, not the curated graph. For a reusable result, say "Save this information as a node" or "Save the supporting evidence in details." `update-memory` first presents concrete content and links; approval writes that preview. Declining it leaves curated memory unchanged. The assistant may occasionally suggest information/details worth keeping.
+Most discussion stays in chat. Large raw research outputs belong in `work/`, not the curated graph. For a reusable result, say "Save this information as a node" or "Save the supporting evidence in details." `update-memory` first previews the content and destination; approval saves that content and permits related mechanical link maintenance. Declining it leaves curated memory unchanged. The assistant may occasionally suggest information/details worth keeping.
 
-For your own thought, say "Create a conclusion from this: …". `create-conclusion` previews a short formulation, ownership, and links. Your approval saves it under `conclusions/`; the assistant does not initiate its own conclusions. These thoughts have high importance for understanding your view, but may be tentative, overbroad, or wrong. New evidence can be discussed critically. Ask to revise an existing conclusion when your view changes; changes still need an approved preview.
+For your own thought, say "Create a conclusion from this: …". `create-conclusion` previews a short formulation and destination; connections are chosen automatically after approval. Your approval saves it under `conclusions/`; the assistant does not initiate its own conclusions. These thoughts have high importance for understanding your view, but may be tentative, overbroad, or wrong. New evidence can be discussed critically. Ask to revise an existing conclusion when your view changes; changes still need an approved preview.
+
+## Approval Buttons
+
+The shared `memory-approval` skill records each exact preview and a unique one-use ID in ignored `work/memory-approvals.json`. Supported inline clients show blue information cards or orange conclusion cards with Approve/Cancel, hover highlighting, and buttons that disappear after use. A callback is short, for example `Approve "Chinese Dragon". ID: <id>`. **Approval sent** means a request was sent; the assistant confirms saving separately after validation and writing. Unsupported clients use compact text previews and approval IDs through the same helper. No additional server, Git account or community Obsidian plugin is required.
+
+At the next ordinary message, the agent expires pending proposals before continuing. A later click is rejected by the registry. Fresh chats and compaction expire pending approvals too; ask for a fresh preview to resume. The helper checks known status and content, not chat history. Turn handling still depends on the agent: this template cannot automatically observe every new chat message or disable an old visible button. It is not a filesystem access-control mechanism. Each project has one active proposal; avoid simultaneous pending approvals in multiple chats. The registry is local temporary bookkeeping and is deliberately not restored from Git.
 
 ## Recall and Agent Memory
 
-Ask "What did I think about this?" or "Recall our research on this topic." `recall-memory` searches relevant short notes and conclusions, including unlinked conclusions, then follows useful links or opens detailed evidence as needed. It reports saved thoughts faithfully, separates them from factual assessment, and acknowledges when no matching saved record was found.
+Ask "What did I think about this?" or "Recall our research on this topic." `recall-memory` searches relevant short notes and conclusions, including unlinked conclusions, then opens evidence sections for factual checking and expands searches for gaps or conflicts. Recalling your saved position may need no detail files. It reports saved thoughts faithfully, separates them from factual assessment, and acknowledges when no matching saved record was found.
 
-The assistant may maintain only `agent-memory/` automatically at meaningful milestones. `state.md` contains the current focus, progress, open questions, next step, relevant links, and a short chronological research trail. `insights.md` holds selective agent findings/hypotheses with their basis. `user.md` holds scoped working preferences, distinguishing explicit instructions from inference. These are not your conclusions, and remain local to this project.
+The assistant may maintain only `agent-memory/` automatically at meaningful milestones. `state.md` contains the checkpoint date, current focus, progress, open questions, a requested or agent-suggested next step, relevant links, and a short chronological research trail. Significant results, direction changes, completed user reviews and requested handoffs trigger checkpoints; ordinary recall stays read-only. `insights.md` holds selective agent findings/hypotheses with their basis. `user.md` holds scoped working preferences, distinguishing explicit instructions from inference. These are not your conclusions, and remain local to this project.
 
 Say "Sync agent memory" to refresh this working layer. State stays concise; older repetitive completed trail entries can be combined without merging your conclusions. A fresh chat or compaction should prompt relevant file recall. These workflows are agent instructions, not guaranteed background jobs or access-control locks. Git stores files, not the full chat history.
 
@@ -97,7 +104,7 @@ Say "Sync agent memory" to refresh this working layer. State stays concise; olde
 
 Notes are flat rather than nested under one concept: a company can link to both Transfer Agent and Service Provider concepts. Relationships are described beside links. Many notes may support one conclusion, and one note may connect to several conclusions. Short nodes link to deeper `details/` notes so the assistant can start with the overview and deepen only when needed.
 
-The graph defaults to blue nodes and orange conclusions. Gray details are hidden until you include them with the filter shown above. Folders supply grouping/color rules, not fixed visual regions. Agent memory and temporary work are outside this main graph.
+The graph defaults to blue nodes and orange conclusions. Gray details are hidden until you include them with the filter shown above. Folders supply grouping/color rules, not fixed visual regions. Agent memory and temporary work are outside this main graph. For focused browsing, open the active note's local graph at depth 1 and expand as useful. No connection-count limit is imposed; new links explain a useful relationship, and existing connections are not automatically pruned. Display depth never limits agent recall.
 
 ## GitHub Backup
 

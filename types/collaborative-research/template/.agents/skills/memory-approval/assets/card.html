@@ -1,0 +1,110 @@
+<div id="__APPROVAL_ROOT__" class="viz-dotted-background">
+  <style>
+    #__APPROVAL_ROOT__ { color-scheme: light dark; padding: 16px 0; }
+    #__APPROVAL_ROOT__ .approval-panel { background: light-dark(#ffffff, #202125); color: light-dark(#202124, #f0f1f3); border: 1px solid light-dark(#dce2eb, #41454d); border-radius: 12px; padding: 18px; max-width: 560px; }
+    #__APPROVAL_ROOT__ .approval-kind { color: light-dark(#1d4ed8, #93b7ff); font-weight: 500; }
+    #__APPROVAL_ROOT__[data-kind="conclusion"] .approval-kind { color: light-dark(#a65308, #ffbf69); }
+    #__APPROVAL_ROOT__[data-kind="details"] .approval-kind { color: light-dark(#525866, #b7bfcc); }
+    #__APPROVAL_ROOT__ h3 { margin: 12px 0 8px; font-size: 1.1em; font-weight: 500; overflow-wrap: anywhere; }
+    #__APPROVAL_ROOT__ .approval-copy { margin: 8px 0 18px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    #__APPROVAL_ROOT__ .approval-destination { margin: 12px 0 0; color: light-dark(#525866, #b7bfcc); overflow-wrap: anywhere; }
+    #__APPROVAL_ROOT__ .approval-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    #__APPROVAL_ROOT__ .approval-actions[hidden] { display: none; }
+    #__APPROVAL_ROOT__ button { font: inherit; min-height: 44px; padding: 9px 18px; border-radius: 8px; border: 1px solid transparent; transition: background-color 140ms ease, box-shadow 140ms ease; }
+    #__APPROVAL_ROOT__ .approve-action { background: light-dark(#2563eb, #2563eb); color: light-dark(#ffffff, #ffffff); }
+    #__APPROVAL_ROOT__ .approve-action:enabled:hover { background: light-dark(#3474f3, #3474f3); box-shadow: 0 0 0 3px light-dark(#2563eb20, #78a5ff30); }
+    #__APPROVAL_ROOT__[data-kind="conclusion"] .approve-action { background: light-dark(#b85b09, #b85b09); }
+    #__APPROVAL_ROOT__[data-kind="conclusion"] .approve-action:enabled:hover { background: light-dark(#cc690f, #cc690f); box-shadow: 0 0 0 3px light-dark(#b85b0920, #ffbf6930); }
+    #__APPROVAL_ROOT__ .cancel-action { background: light-dark(#eff2f7, #33363c); color: inherit; }
+    #__APPROVAL_ROOT__ .cancel-action:enabled:hover { background: light-dark(#e1e7f0, #454a54); box-shadow: 0 0 0 3px light-dark(#66708518, #b7bfcc22); }
+    #__APPROVAL_ROOT__ button:disabled { cursor: default; }
+    #__APPROVAL_ROOT__ .approval-status { margin: 12px 0 0; color: light-dark(#525866, #b7bfcc); overflow-wrap: anywhere; }
+    @media (prefers-reduced-motion: reduce) { #__APPROVAL_ROOT__ button { transition: none; } }
+  </style>
+  <section class="approval-panel" aria-labelledby="__APPROVAL_ROOT__-title">
+    <div class="approval-kind"></div>
+    <h3 id="__APPROVAL_ROOT__-title"></h3>
+    <div class="approval-changes"></div>
+    <div class="approval-actions" hidden>
+      <button type="button" class="approve-action cursor-interaction" disabled>Approve</button>
+      <button type="button" class="cancel-action cursor-interaction" disabled>Cancel</button>
+    </div>
+    <p class="approval-status" role="status" aria-live="polite">Checking button support</p>
+    <p class="approval-fallback" hidden></p>
+  </section>
+  <script>
+    (() => {
+      const preview = __APPROVAL_DATA__;
+      const root = document.getElementById('__APPROVAL_ROOT__');
+      const approve = root.querySelector('.approve-action');
+      const cancel = root.querySelector('.cancel-action');
+      const actions = root.querySelector('.approval-actions');
+      const label = root.querySelector('.approval-status');
+      const fallback = root.querySelector('.approval-fallback');
+      const terminal = new Set(['sending', 'sent', 'cancelled', 'failed', 'expired']);
+      let state = 'pending';
+      const message = action => `${action === 'approve' ? 'Одобряю' : 'Отменяю'} «${preview.title}». ID: ${preview.id}`;
+      root.dataset.kind = preview.kind;
+      root.querySelector('.approval-kind').textContent = {
+        information: 'Information', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update'
+      }[preview.kind];
+      root.querySelector('h3').textContent = preview.title;
+      for (const change of preview.changes) {
+        const destination = document.createElement('p');
+        destination.className = 'approval-destination';
+        destination.textContent = `${change.action} · ${change.path}`;
+        const content = document.createElement('p');
+        content.className = 'approval-copy';
+        // The same approved title is already displayed above; avoid a duplicate H1.
+        const lines = change.text.split('\n');
+        if (change.action === 'create' && lines[0] === '# ' + preview.title) {
+          lines.shift();
+          if (lines[0] === '') lines.shift();
+        }
+        content.textContent = lines.join('\n');
+        root.querySelector('.approval-changes').append(destination, content);
+      }
+      fallback.textContent = message('approve');
+      function restore(snapshot) {
+        const data = snapshot?.privateContent || snapshot?.modelContent || snapshot;
+        if (data?.previewId === preview.id && terminal.has(data.status)) state = data.status;
+      }
+      function persist() {
+        try {
+          if (typeof window.openai?.setWidgetState === 'function') {
+            Promise.resolve(window.openai.setWidgetState({
+              modelContent: { previewId: preview.id, status: state },
+              privateContent: { previewId: preview.id, status: state }
+            })).catch(() => {});
+          }
+        } catch (_) {}
+      }
+      function render() {
+        const supported = typeof window.openai?.sendFollowUpMessage === 'function';
+        const enabled = supported && state === 'pending';
+        actions.hidden = !enabled;
+        approve.disabled = cancel.disabled = !enabled;
+        fallback.hidden = supported || state !== 'pending';
+        label.textContent = {
+          sending: 'Sending…', sent: 'Approval sent', cancelled: 'Cancelled',
+          failed: 'Not delivered · Ask for a new preview', expired: 'Expired'
+        }[state] || (supported ? 'Awaiting your choice' : 'Use this text approval in chat:');
+      }
+      async function submit(action) {
+        if (state !== 'pending' || typeof window.openai?.sendFollowUpMessage !== 'function') return;
+        state = 'sending'; render(); persist();
+        try {
+          await window.openai.sendFollowUpMessage({ prompt: message(action), title: action === 'approve' ? 'Approve memory preview?' : 'Cancel memory preview?' });
+          state = action === 'approve' ? 'sent' : 'cancelled';
+        } catch (_) { state = 'failed'; }
+        render(); persist();
+      }
+      approve.addEventListener('click', () => submit('approve'));
+      cancel.addEventListener('click', () => submit('cancel'));
+      window.addEventListener('openai:set_globals', event => {
+        restore(event.detail?.globals?.widgetState); render();
+      });
+      restore(window.openai?.widgetState); render();
+    })();
+  </script>
+</div>

@@ -2,6 +2,7 @@
 
 ## Current State
 
+- **Updated:** No checkpoint recorded yet.
 - **Focus:** Start from the README topic; refine the working question and scope with the user.
 - **Progress:** No research progress recorded yet.
 - **Open Questions:** Not yet identified.

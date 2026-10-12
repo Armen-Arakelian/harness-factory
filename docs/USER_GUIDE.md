@@ -121,6 +121,8 @@ The destination must not exist and must be outside the Factory. Relative paths r
 
 Open the generated folder as a separate Codex project and an Obsidian vault. Follow [the template's own guide](../types/collaborative-research/README.md) for research, memory, and graph workflows.
 
+Collaborative Research offers compact approval buttons where the client supports them, with a text fallback elsewhere. Ordinary messages close pending proposals when processed by the agent; old IDs are rejected by a local registry. A new chat requires a new preview. See [Approval Buttons](../types/collaborative-research/README.md#approval-buttons) for the workflow and its limitations.
+
 ## Save, Restore, and Share
 
 Inside a connected project, say:

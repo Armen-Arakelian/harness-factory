@@ -26,11 +26,13 @@ Open this folder in Codex and as a vault in Obsidian. No community plugins or co
 - `agent-memory/`: project-local agent state, findings, and working preferences, excluded from the main graph. The agent updates this separate layer at meaningful milestones.
 - `work/`: temporary research files, excluded from the main graph.
 
-Changes to user-controlled memory require a concrete preview and approval, including changes to this map. Ask to "save this information" or "create a conclusion from this thought" to start the appropriate local skill.
+Saving or changing substantive memory requires approval of a compact preview showing the text and destination. After approval, the assistant chooses useful connections and maintains related reverse links and map entries automatically; ask to see the links if you want to review them. Unrelated content changes and graph cleanup still require a separate request and approval. Ask to "save this information" or "create a conclusion from this thought" to start the appropriate local skill.
 
-Ask "what did I think about this?" or "recall our research on this topic" to use `recall-memory`. It searches short notes and relevant conclusions, follows useful links, and opens deeper evidence when needed. Your conclusions are priority context for your evolving understanding; the agent may critically discuss their scope and correctness, while changes still require your request and approval.
+When supported, a compact blue information card or orange conclusion card offers **Approve** and **Cancel**. A click sends only a short choice, title and ID. Buttons disappear after use; **Approval sent** is a request, and the assistant confirms **Saved** only after the write succeeds. If you send another ordinary message first, the agent expires the old proposal in a local registry; clicking it later cannot pass that registry check. Ask for a new preview to return to it. Old buttons can remain visually active because there is no automatic new-message hook. New chats and compaction also require a fresh preview. In clients without buttons, approve the text preview with its ID instead. No additional dependency or Git setup is needed.
 
-Ask to "sync agent memory" to refresh the agent's working notes. These notes do not become your conclusions or curated information without the normal approval workflow. Automatic updates follow `rules.md`; they are instructions for the agent, not a background service or filesystem lock.
+Ask "what did I think about this?" or "recall our research on this topic" to use `recall-memory`. It finds candidate short notes and conclusions first. Recalling your saved view may need no details; checking factual support opens relevant evidence sections and expands when gaps or conflicts require it. Your conclusions are priority context for your evolving understanding; the agent may critically discuss their scope and correctness, while changes still require your request and approval.
+
+Ask to "sync agent memory" to refresh the agent's working notes. These notes do not become your conclusions or curated information without the normal approval workflow. Checkpoints record the update date and significant results, changes of direction, reviews, pending questions and the next step. On resumption, the agent checks that the recorded next step still fits your request. Automatic updates follow `rules.md`; they are instructions for the agent, not a background service or filesystem lock.
 
 The default graph shows information notes in blue and conclusions in orange. Details are assigned gray but hidden by default. To include them, change the graph's search filter to:
 
@@ -39,6 +41,8 @@ path:/^(nodes|conclusions|details)\//
 ```
 
 Colors distinguish folders; they do not create separate spatial regions. Relationship labels are written in notes, not displayed as edge labels in the standard graph.
+
+For a focused view, open a note such as an entry point from the Memory Map, run **Open local graph**, and start with depth **1** in the local graph filter settings. Increase depth to explore farther. The global graph remains available; this display choice does not limit the assistant's memory search.
 
 ## GitHub Backup
 
