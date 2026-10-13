@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "(path:/^(nodes|conclusions)\\//) OR path:\"glossary.md\"",
+  "search": "(path:/^(nodes|people|conclusions)\\//) OR path:\"glossary.md\"",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
@@ -33,6 +33,20 @@
       "color": {
         "a": 1,
         "rgb": 9133302
+      }
+    },
+    {
+      "query": "path:/^people\\// [contact_status:contact]",
+      "color": {
+        "a": 1,
+        "rgb": 9549978
+      }
+    },
+    {
+      "query": "path:/^people\\// [contact_status:public-figure]",
+      "color": {
+        "a": 1,
+        "rgb": 5999216
       }
     }
   ],

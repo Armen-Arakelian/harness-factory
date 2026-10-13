@@ -4,6 +4,7 @@
     #__APPROVAL_ROOT__ .approval-panel { background: light-dark(#ffffff, #202125); color: light-dark(#202124, #f0f1f3); border: 1px solid light-dark(#dce2eb, #41454d); border-radius: 12px; padding: 18px; max-width: 560px; }
     #__APPROVAL_ROOT__ .approval-kind { color: light-dark(#1d4ed8, #93b7ff); font-weight: 500; }
     #__APPROVAL_ROOT__[data-kind="conclusion"] .approval-kind { color: light-dark(#a65308, #ffbf69); }
+    #__APPROVAL_ROOT__[data-kind="person"] .approval-kind { color: light-dark(#42694f, #91b89a); }
     #__APPROVAL_ROOT__[data-kind="topics"] .approval-kind,
     #__APPROVAL_ROOT__[data-kind="details"] .approval-kind { color: light-dark(#525866, #b7bfcc); }
     #__APPROVAL_ROOT__ h3 { margin: 12px 0 8px; font-size: 1.1em; font-weight: 500; overflow-wrap: anywhere; }
@@ -16,6 +17,8 @@
     #__APPROVAL_ROOT__ .approve-action:enabled:hover { background: light-dark(#3474f3, #3474f3); box-shadow: 0 0 0 3px light-dark(#2563eb20, #78a5ff30); }
     #__APPROVAL_ROOT__[data-kind="conclusion"] .approve-action { background: light-dark(#b85b09, #b85b09); }
     #__APPROVAL_ROOT__[data-kind="conclusion"] .approve-action:enabled:hover { background: light-dark(#cc690f, #cc690f); box-shadow: 0 0 0 3px light-dark(#b85b0920, #ffbf6930); }
+    #__APPROVAL_ROOT__[data-kind="person"] .approve-action { background: light-dark(#42694f, #42694f); }
+    #__APPROVAL_ROOT__[data-kind="person"] .approve-action:enabled:hover { background: light-dark(#507e60, #507e60); box-shadow: 0 0 0 3px light-dark(#42694f20, #91b89a30); }
     #__APPROVAL_ROOT__ .cancel-action { background: light-dark(#eff2f7, #33363c); color: inherit; }
     #__APPROVAL_ROOT__ .cancel-action:enabled:hover { background: light-dark(#e1e7f0, #454a54); box-shadow: 0 0 0 3px light-dark(#66708518, #b7bfcc22); }
     #__APPROVAL_ROOT__ button:disabled { cursor: default; }
@@ -47,7 +50,7 @@
       const message = action => `${action === 'approve' ? 'Одобряю' : 'Отменяю'} «${preview.title}». ID: ${preview.id}`;
       root.dataset.kind = preview.kind;
       root.querySelector('.approval-kind').textContent = {
-        information: 'Information', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update', topics: 'Research Topics'
+        information: 'Information', person: 'Person', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update', topics: 'Research Topics'
       }[preview.kind];
       root.querySelector('h3').textContent = preview.title;
       for (const change of preview.changes) {

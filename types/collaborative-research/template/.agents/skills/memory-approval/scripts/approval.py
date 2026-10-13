@@ -5,6 +5,7 @@ from contextlib import contextmanager
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import sys
 import uuid
@@ -22,7 +23,7 @@ def digest(value):
 def validate(preview):
     if not isinstance(preview, dict) or set(preview) != {"kind", "title", "changes"}:
         raise ValueError("preview requires only kind, title and changes")
-    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics"}:
+    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics", "person"}:
         raise ValueError("unsupported preview kind")
     if not isinstance(preview["title"], str) or not preview["title"].strip() or "\n" in preview["title"]:
         raise ValueError("title must be a nonempty single line")
@@ -37,7 +38,7 @@ def validate(preview):
             raise ValueError("use project-relative paths")
         path = Path(name)
         allowed = name in {"README.md", "research-topics.md"} or (len(path.parts) == 2 and
-                  path.parts[0] in {"nodes", "conclusions", "details"} and path.suffix == ".md")
+                  path.parts[0] in {"nodes", "people", "conclusions", "details"} and path.suffix == ".md")
         if not allowed or path.is_absolute() or ".." in path.parts or name in seen:
             raise ValueError("invalid or duplicate curated destination")
         if (preview["kind"] == "topics") != (name == "research-topics.md"):
@@ -47,6 +48,18 @@ def validate(preview):
             raise ValueError("unsupported action; preview renames as deletion plus creation")
         if not isinstance(change["text"], str) or not change["text"].strip():
             raise ValueError("provide exact substantive text, or a deletion description")
+        if path.parts[0] == "people":
+            if preview["kind"] not in {"person", "maintenance"}:
+                raise ValueError("people changes use person or maintenance previews")
+            if change["action"] != "delete":
+                sections = change["text"].split("---\n", 2)
+                if len(sections) != 3 or sections[0]:
+                    raise ValueError("person preview requires contact-status frontmatter")
+                statuses = [line for line in sections[1].splitlines() if line.startswith("contact_status:")]
+                if len(statuses) != 1 or not re.fullmatch(r"contact_status: (contact|public-figure)", statuses[0]):
+                    raise ValueError("person preview needs one canonical contact_status")
+    if preview["kind"] == "person" and not any(Path(c["path"]).parts[0] == "people" for c in preview["changes"]):
+        raise ValueError("person preview must include a people note")
 
 
 @contextmanager

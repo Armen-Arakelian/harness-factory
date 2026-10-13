@@ -21,6 +21,7 @@ No conclusions saved yet. Add a short link here when the user approves a new con
 Open this folder in Codex and as a vault in Obsidian. No community plugins or connection to the Project Factory are required.
 
 - `nodes/`: short information notes, without mandatory entity types.
+- `people/`: short profiles, light green for a known personal contact route and darker green otherwise.
 - `conclusions/`: short thoughts and conclusions initiated by the user.
 - `details/`: curated deeper explanations and supporting evidence.
 - `agent-memory/`: project-local agent state, findings, and working preferences, excluded from the main graph. The agent updates this separate layer at meaningful milestones.
@@ -33,6 +34,8 @@ When supported, a compact blue information card or orange conclusion card offers
 
 Ask "Add these topics to our research list" or "Review the research topics list" to use `manage-research-topics`. Open questions are **Not explored** or **Needs depth**, with useful links and remaining gaps. A requested review can propose removing answered questions; results stay in the research notes. Every list change requires approval, with no automatic reviews.
 
+Ask **"Save this person: …"** to preview a short profile and its contact status. A known personal route is **Contact** (light green); otherwise **Public figure** (darker green). The assistant selects a few useful research anchors by relevance, not every topic associated with the person. Profile and status changes require approval. These colors are intended for a dark graph.
+
 Ask **"Create a glossary"** and choose term languages and an explanation language. It starts empty, then updates automatically from each successfully saved information note and its saved details, without entry approvals. Say **"Review the glossary across the project"** to include earlier research or reconcile terms; full reviews are never automatic. Ask to disable it to pause maintenance.
 
 Ask "what did I think about this?" or "recall our research on this topic" to use `recall-memory`. It finds candidate short notes and conclusions first. Recalling your saved view may need no details; checking factual support opens relevant evidence sections and expands when gaps or conflicts require it. Your conclusions are priority context for your evolving understanding; the agent may critically discuss their scope and correctness, while changes still require your request and approval.
@@ -42,7 +45,7 @@ Ask to "sync agent memory" to refresh the agent's working notes. These notes do 
 The default graph shows information notes in blue and conclusions in orange. An enabled glossary appears as a purple helper node without research-note connections. Details are assigned gray but hidden by default. To include them, change the graph's search filter to:
 
 ```text
-path:/^(nodes|conclusions|details)\// OR path:"glossary.md"
+path:/^(nodes|people|conclusions|details)\// OR path:"glossary.md"
 ```
 
 Colors distinguish folders; they do not create separate spatial regions. Relationship labels are written in notes, not displayed as edge labels in the standard graph.

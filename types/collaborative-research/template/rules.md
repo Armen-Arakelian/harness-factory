@@ -13,7 +13,7 @@ Apply these principles throughout research and discussion, not only when saving 
 
 ## Ownership and Approval
 
-User-controlled permanent memory consists of `README.md`, `research-topics.md`, `nodes/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
+User-controlled permanent memory consists of `README.md`, `research-topics.md`, `nodes/`, `people/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
 
 Show the exact text or substantive edits and their destination/title; include requested renames and deletions. After approval, the agent chooses useful connections and maintains related reverse links and README discovery entries automatically as part of that save. Do not enumerate these mechanical edits or ask for separate link approval unless requested. This delegation permits link-only edits related to the approved content, not unrelated prose changes, new unapproved notes, scope changes or autonomous graph cleanup. Links must not change the approved meaning or imply unsupported evidence. Re-preview changes to substantive content, meaning or destination. If a reliable record of content approval is unavailable, ask again before writing.
 
@@ -33,11 +33,24 @@ Active entries contain a question, either `Not explored` or `Needs depth`, usefu
 
 A requested review searches saved material and proposes status, link and remaining-question changes. It does not start new research or write the list automatically. Additions, edits, reordering, removal and status changes use an exact `topics` preview through `memory-approval`. Preserve unrelated entries and verify links after the approved write. New evidence or changed scope can justify adding an open question again, also through a user request and approval. The list has no background maintenance or scheduling; editing it alone does not trigger a research checkpoint.
 
+## People
+
+Store each person once in flat `people/`, using `update-memory` and the same approval process as information notes. Search both `people/` and `nodes/` for an existing record before proposing one; moving an existing note requires an approved rename, not a silent duplicate. Two contact statuses describe access, not importance or relationship closeness:
+
+- `contact`: the user has identified a personal route to this person, such as an acquaintance, prior correspondence or an introduction through someone. Record that route briefly when supplied; never invent contact details.
+- `public-figure`: a relevant person with no established personal route. A public email, job title or prominence does not establish personal access. If unclear, ask when it materially affects the save; otherwise describe "no personal route established" in the preview without claiming contact is impossible.
+
+Use one canonical frontmatter line `contact_status: contact` or `contact_status: public-figure` inside `---` delimiters. Include the chosen status in the exact preview. A contact-status change requires approval and changes the color without moving the note. Keep the body short: who they are, why they matter to this research, the known contact route if any, and useful sources or the basis for supplied information. More extensive evidence belongs in approved `details/`; personal thoughts about someone remain in `conclusions/`.
+
+Choose links only where navigating to the person clarifies a specific research relationship: they explained a mechanism, authored an investigated approach, are a potential contact for an active question, or are the subject/basis of an existing conclusion. Explain that relationship beside the link, distinguishing someone's statement from verified evidence. Their job at a bank does not justify links to shares, dividends and every other financial topic. Select direct, useful anchors rather than a topic catalogue; there is no mandatory count. Maintain the related backlinks after approval, using `Conclusion` for a link to a conclusion, without creating unrequested conclusions or editing unrelated prose.
+
+People remain user-controlled memory. The agent may suggest a relevant person save, but does not create or update profiles automatically. Names in `people/` do not automatically populate the glossary. These notes grant no authorization to contact anyone.
+
 ## Glossary
 
 `glossary.md` is an optional agent-owned terminology aid, created only when the user asks. Use `manage-glossary` to ask for missing term languages and the explanation language, then create an empty file. Creation enables bounded maintenance without per-entry approval; it does not authorize historical backfill. Language settings belong to this project, not Factory defaults. Configured translations and explanations are the exception to the English-content convention.
 
-After a successful substantive information save, extract terms only from the nodes and details saved in that operation. Update relevant entries in one batch; leave unrelated terms unchanged. Link-only changes, ordinary messages, conclusions, topics and agent-memory checkpoints do not trigger glossary updates. No graph traversal or full historical scan occurs during a save. A full glossary review requires a separate user request and may reconcile terms across saved nodes and details without per-entry approval.
+After a successful substantive information save, extract terms only from the nodes and details saved in that operation. Update relevant entries in one batch; leave unrelated terms unchanged. People-note saves, link-only changes, ordinary messages, conclusions, topics and agent-memory checkpoints do not trigger glossary updates. No graph traversal or full historical scan occurs during a save. A full glossary review requires a separate user request and may reconcile terms across saved nodes and details without per-entry approval.
 
 Keep meanings short, scoped and qualified where uncertain; distinguish different senses with context. The glossary contains no note links or backlinks and appears as a purple helper node. It is neither evidence nor a user conclusion. Its permission does not extend to curated memory or settings. A glossary error must not undo or repeat a successful curated save. Disable maintenance on request without deleting its entries.
 
@@ -61,7 +74,7 @@ Revise or remove stale agent notes when warranted. If new evidence contradicts a
 
 Optional outward links can connect one agent entry to several existing notes, or several entries to one note. Label their purpose, for example `Related` or `Evidence`. Follow the vault-relative link convention below. Syncing agent memory does not authorize edits to curated target notes or reverse links. Related link maintenance belongs to an approved curated save. Never create a user conclusion here or attribute an agent result to the user.
 
-Promotion into `nodes/` or `details/` uses `update-memory` and approval of an exact preview. A new user conclusion still requires the user's initiation and `create-conclusion`. Agent memory may reference an existing conclusion but cannot replace or rewrite it.
+Promotion into `nodes/`, `people/` or `details/` uses `update-memory` and approval of an exact preview. A new user conclusion still requires the user's initiation and `create-conclusion`. Agent memory may reference an existing conclusion but cannot replace or rewrite it.
 
 Read the compact state at session start, then retrieve only relevant insights and preferences by heading, topic, or linked path. Do not load the entire layer on every answer. Keep the three files initially; split insights into topic files only when growth makes targeted retrieval difficult, updating references within this layer. Do not create memory folders per node or per conclusion.
 
@@ -84,7 +97,7 @@ The trail is a compact aid to continuity, not an exhaustive audit log. Consolida
 
 ## Notes and Connections
 
-- Store each informational entity or idea once in the flat `nodes/` folder. There is no mandatory type field or taxonomy. Explain what it is in a short description.
+- Store each informational entity or idea once in the flat `nodes/` folder. Ordinary information notes have no mandatory type field or taxonomy; people use the separate contact-status convention above. Explain what it is in a short description.
 - Store user conclusions in `conclusions/`, never embedded as substitutes for conclusion files elsewhere. Store deeper curated explanations in `details/`.
 - Use readable, stable lowercase hyphenated filenames and a descriptive English title. Search for existing notes before proposing a duplicate. Do not rename an existing note just for naming consistency.
 - Use vault-relative links without `.md`, with display titles: `[[nodes/transfer-agent|Transfer Agent]]`. Link to existing notes or notes included in the same approved batch, not speculative future files.
@@ -100,13 +113,15 @@ These are content conventions, not mandatory metadata schemas. Adapt headings to
 
 **Information note (`nodes/`):** title, a short description of what it is and what matters, then relevant `Connections`, `Conclusions`, and `Details` sections. Keep it readable at a glance; move long explanations into an approved detail note. Do not confuse proposed information with the user's accepted conclusions.
 
+**Person (`people/`):** contact-status frontmatter, name as title, short identity and research relevance, known personal contact route if supplied, sources/basis where useful, then specific `Connections`, `Conclusions` and `Details` links as needed. Contact status is not an importance rank or evidence-quality label.
+
 **Conclusion (`conclusions/`):** title and the user's thought in usually one to three sentences, followed by relevant `Connections` and optional `Basis` links. Add context or scope only when supplied by the user or explicitly approved. A conclusion does not need a research report to exist.
 
 **Detail (`details/`):** title, concise summary, substantive explanation or method, traceable evidence and sources, limitations or unresolved questions, and relevant `Connections`. Include only sections useful for that subject; do not paste raw tool output or conversation transcripts into curated memory.
 
 ## Reading and Research
 
-- Read the README map, compact agent state, relevant information notes, and their linked conclusions first. Retrieve agent insights and preferences selectively; open deeper evidence only when needed. Saved conclusions are priority context for the next relevant research answer, not unrelated answers.
+- Read the README map, compact agent state, relevant information and people notes, and their linked conclusions first. Retrieve agent insights and preferences selectively; open deeper evidence only when needed. Saved conclusions are priority context for the next relevant research answer, not unrelated answers.
 - Use `recall-memory` when an answer depends on saved research, for recall requests, or to retrieve relevant memory after a fresh session or compaction. Search titles and content using subject terms, alternative names, and translations into English when useful. Maps and links are entry points, not exhaustive indexes; search relevant conclusions directly even when unlinked.
 - For "what did I think about this?", report the saved thought faithfully and distinguish it from current evidence and your assessment. Follow User Conclusions in Research above. An unsuccessful search means no matching record was found, not that the user never held or discussed the thought. Recall itself makes no memory changes.
 - Distinguish recalling a saved view from checking factual support. Search for candidate notes before opening them; read relevant short conclusions in full. For verification, inspect candidate detail headings and approximate length, then read relevant evidence, sources and qualifications. Short, wholly relevant details may be read in full; longer or mixed-topic notes need targeted sections unless broader context is necessary. Re-read narrower sections when output is truncated. Expand searches for gaps and conflicts rather than imposing a fixed file count or link depth. Stop once the question is supported and material conflicts are addressed. Do not load every note or work file into context.
@@ -117,9 +132,9 @@ These are content conventions, not mandatory metadata schemas. Adapt headings to
 
 ## Graph Presentation
 
-Folder membership defines research-note color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` gray (`#9CA3AF`). The optional root `glossary.md` has its own purple (`#8B5CF6`) group. Do not add color fields or mandatory type tags to notes.
+Folder membership defines research-note color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` gray (`#9CA3AF`). The optional root `glossary.md` has its own purple (`#8B5CF6`) group. People groups use `contact_status`: `contact` light green (`#91B89A`) and `public-figure` muted darker green (`#5B8A70`), tuned for a dark graph background. Color is also described in the note status; it is not the only way to identify access. Do not add per-note color fields or a general node taxonomy.
 
-The default graph filter includes `nodes/`, `conclusions/`, and `glossary.md` if created. The detail group is already configured for when details are shown. Instructions, skills, the README, `work/`, and `agent-memory/` are outside the main graph. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
+The default graph filter includes `nodes/`, `people/`, `conclusions/`, and `glossary.md` if created. The detail group is already configured for when details are shown. Instructions, skills, the README, `work/`, and `agent-memory/` are outside the main graph. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
 
 For focused browsing, open the local graph of the active note and start at depth 1, increasing depth when useful. This is an optional view, not a limit on agent recall. Preserve the global graph and current colors; do not alter settings or remove connections merely to make a view sparse.
 

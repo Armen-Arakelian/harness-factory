@@ -17,6 +17,7 @@ Broad questions can develop across several conversations; the assistant should d
 | Location | Purpose |
 |---|---|
 | `nodes/` | Short information notes connected by meaningful links. |
+| `people/` | Relevant people, with or without a known personal contact route. |
 | `conclusions/` | Your short thoughts and conclusions, initiated by you. |
 | `details/` | Deeper explanations, evidence and limitations. |
 | `research-topics.md` | Your future questions, coverage statuses and links to existing research. |
@@ -40,6 +41,12 @@ Your conclusions matter as records of your understanding, but may be tentative o
 
 Say **"Add these topics to our research list"** or **"Review the research topics list."** Open questions are **Not explored** or **Needs depth**, with links and remaining gaps. On a requested review, sufficiently answered questions are proposed for removal; their results stay in the research notes. Every change needs approval. There are no automatic additions, reviews or completed-topic archives.
 
+## People
+
+Ask **"Save this person: …"** to preview who they are, why they matter and their contact status. **Contact** means a known personal route; **Public figure** means none is established, regardless of prominence. Profiles and status changes require approval. The assistant chooses links to specific research contributions or thoughts, not every topic connected to their employer. One flat `people/` folder holds both statuses.
+
+The graph uses muted light green (`#91B89A`) for contacts and darker green (`#5B8A70`) for public figures. These shades suit a dark graph; the light shade has weaker contrast on a white background.
+
 ## Optional Glossary
 
 Ask **"Create a glossary"** and choose term languages and an explanation language. It starts empty, then updates automatically from each successfully saved information note and its saved details, without entry approvals. Say **"Review the glossary across the project"** to include earlier research or reconcile terms; full reviews are never automatic. Ask to disable it to pause maintenance.
@@ -59,7 +66,7 @@ Fresh sessions should recover context from these files. These workflows depend o
 The default graph shows **blue information nodes** and **orange conclusions**. **Gray details** are hidden; to include them, use this graph search filter:
 
 ```text
-path:/^(nodes|conclusions|details)\// OR path:"glossary.md"
+path:/^(nodes|people|conclusions|details)\// OR path:"glossary.md"
 ```
 
 For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.

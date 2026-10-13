@@ -25,7 +25,7 @@ Active entries use only `Not explored` or `Needs depth`. `Sufficient for now` is
 
 ## Review on Request
 
-Read candidate notes relevant to each requested question. Search titles, aliases, content and conclusions, including unlinked ones; inspect evidence and limitations in details as needed. Review only the requested entries, or the whole list when that is requested. Reviewing the list checks saved research; it does not authorize new web research or new notes.
+Read candidate notes relevant to each requested question. Search relevant information/people notes, titles, aliases, content and conclusions, including unlinked ones; inspect evidence and limitations in details as needed. Review only the requested entries, or the whole list when that is requested. Reviewing the list checks saved research; it does not authorize new web research or new notes.
 
 - `Not explored`: no research has started, as established by available context or the user. Failure to find a note alone does not prove nothing was studied; report missing evidence and keep an existing status when coverage cannot be established.
 - `Needs depth`: an existing note, partial investigation or limited result touches the question but leaves material gaps. A concept description is not a complete answer. State what remains and link useful existing material.
@@ -39,4 +39,4 @@ For any list change, use `../memory-approval/SKILL.md`. Register `kind: topics`,
 
 Present the shared approval card when supported, otherwise its text fallback. Only an accepted ID check authorizes applying that returned proposal. An intervening ordinary message expires it. Recheck the list before writing, preserve unrelated entries and re-preview substantive conflicts. Remove the initial empty-state sentence when the first approved entry is added. Verify changed text, allowed statuses and link targets, then confirm briefly.
 
-The save affects only this list. Do not create or modify nodes, conclusions, details, README map entries or agent memory to support it. A topic-list edit alone is not a research checkpoint; a separately requested change of active research direction can use the normal state workflow. No scheduling, automatic reviews or cross-project topic lists are introduced.
+The save affects only this list. Do not create or modify nodes, people, conclusions, details, README map entries or agent memory to support it. A topic-list edit alone is not a research checkpoint; a separately requested change of active research direction can use the normal state workflow. No scheduling, automatic reviews or cross-project topic lists are introduced.
