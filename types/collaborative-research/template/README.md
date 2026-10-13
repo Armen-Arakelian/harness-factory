@@ -24,11 +24,14 @@ Open this folder in Codex and as a vault in Obsidian. No community plugins or co
 - `conclusions/`: short thoughts and conclusions initiated by the user.
 - `details/`: curated deeper explanations and supporting evidence.
 - `agent-memory/`: project-local agent state, findings, and working preferences, excluded from the main graph. The agent updates this separate layer at meaningful milestones.
+- `research-topics.md`: your future questions, coverage statuses and links to existing research; changes require your request and approval.
 - `work/`: temporary research files, excluded from the main graph.
 
 Saving or changing substantive memory requires approval of a compact preview showing the text and destination. After approval, the assistant chooses useful connections and maintains related reverse links and map entries automatically; ask to see the links if you want to review them. Unrelated content changes and graph cleanup still require a separate request and approval. Ask to "save this information" or "create a conclusion from this thought" to start the appropriate local skill.
 
 When supported, a compact blue information card or orange conclusion card offers **Approve** and **Cancel**. A click sends only a short choice, title and ID. Buttons disappear after use; **Approval sent** is a request, and the assistant confirms **Saved** only after the write succeeds. If you send another ordinary message first, the agent expires the old proposal in a local registry; clicking it later cannot pass that registry check. Ask for a new preview to return to it. Old buttons can remain visually active because there is no automatic new-message hook. New chats and compaction also require a fresh preview. In clients without buttons, approve the text preview with its ID instead. No additional dependency or Git setup is needed.
+
+Ask "Add these topics to our research list" or "Review the research topics list" to use `manage-research-topics`. Open questions are **Not explored** or **Needs depth**, with useful links and remaining gaps. A requested review can propose removing answered questions; results stay in the research notes. Every list change requires approval, with no automatic reviews.
 
 Ask "what did I think about this?" or "recall our research on this topic" to use `recall-memory`. It finds candidate short notes and conclusions first. Recalling your saved view may need no details; checking factual support opens relevant evidence sections and expands when gaps or conflicts require it. Your conclusions are priority context for your evolving understanding; the agent may critically discuss their scope and correctness, while changes still require your request and approval.
 

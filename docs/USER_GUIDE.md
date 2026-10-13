@@ -33,7 +33,7 @@ python3 scripts/init.py \
 
 The destination is the new folder itself, must not exist, and must be outside Factory. Relative paths start at your shell's working directory. Creation is local and offline; it does not start research or upload anything. If generation fails, inspect any partial folder before retrying.
 
-Open the result in Codex and as an Obsidian vault. Each project is independent; Factory updates apply to future projects only.
+Open the result in Codex and as an Obsidian vault. Each project is independent; Factory updates apply to future projects only. For managing open research questions, see [Future Research Topics](../types/collaborative-research/README.md#future-research-topics).
 
 ## Optional GitHub Setup
 

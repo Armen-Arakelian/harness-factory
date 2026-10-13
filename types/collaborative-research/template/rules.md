@@ -13,7 +13,7 @@ Apply these principles throughout research and discussion, not only when saving 
 
 ## Ownership and Approval
 
-User-controlled permanent memory consists of `README.md`, `nodes/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
+User-controlled permanent memory consists of `README.md`, `research-topics.md`, `nodes/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
 
 Show the exact text or substantive edits and their destination/title; include requested renames and deletions. After approval, the agent chooses useful connections and maintains related reverse links and README discovery entries automatically as part of that save. Do not enumerate these mechanical edits or ask for separate link approval unless requested. This delegation permits link-only edits related to the approved content, not unrelated prose changes, new unapproved notes, scope changes or autonomous graph cleanup. Links must not change the approved meaning or imply unsupported evidence. Re-preview changes to substantive content, meaning or destination. If a reliable record of content approval is unavailable, ask again before writing.
 
@@ -24,6 +24,14 @@ The user owns conclusions. Only a user request initiates one, and a conclusion m
 `agent-memory/` is a separate, project-local durable layer owned by the agent. Its bounded automatic-write policy is defined below; it does not bypass approval for user-controlled memory.
 
 `work/` is for temporary files from authorized research. It is outside permanent memory. Promotion into memory requires approval; deletion of working files is not automatic.
+
+## Research Topics
+
+`research-topics.md` is the user's project-local list of open questions, separate from the current research state and outside the main graph. Use `manage-research-topics` only when the user requests list management or review. A topic may exist alongside an information note while still needing investigation.
+
+Active entries contain a question, either `Not explored` or `Needs depth`, useful existing links, and a brief remaining question when depth is needed. When a requested review finds sufficient coverage, propose removing the entry with links to the saved results; do not keep a done status or create an archive. Removal needs approval and affects only the list entry, not its research notes. Status describes coverage of that question and scope, not the factual correctness of a saved conclusion. A note's existence or a single checked example cannot establish broad completeness. Missing records do not prove research never occurred; preserve uncertainty when assessing coverage.
+
+A requested review searches saved material and proposes status, link and remaining-question changes. It does not start new research or write the list automatically. Additions, edits, reordering, removal and status changes use an exact `topics` preview through `memory-approval`. Preserve unrelated entries and verify links after the approved write. New evidence or changed scope can justify adding an open question again, also through a user request and approval. The list has no background maintenance or scheduling; editing it alone does not trigger a research checkpoint.
 
 ## User Conclusions in Research
 

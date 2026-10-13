@@ -1,6 +1,6 @@
 ---
 name: memory-approval
-description: Register an exact research-memory preview, present approval cards by default when visualize is available, and validate one-use approval or cancellation IDs. Used by update-memory and create-conclusion; does not decide what to save.
+description: Register an exact research-memory preview, present approval cards by default when visualize is available, and validate one-use approval or cancellation IDs. Used by update-memory, create-conclusion and manage-research-topics; does not decide what to save.
 ---
 
 # Memory Approval
@@ -21,7 +21,7 @@ This is agent-driven turn handling, not a background event hook. A stale button 
    {"kind":"information","title":"Chinese Dragon","changes":[{"path":"nodes/chinese-dragon.md","action":"create","text":"The exact substantive text shown to the user."}]}
    ```
 
-   `kind` is `information`, `conclusion`, `details` or `maintenance`; each change has `path`, `action` (`create`, `edit`, `delete`) and `text`. An edit shows exact replacement text with enough context to identify the edit; deletion describes what is removed. A rename is a deletion plus creation, explicitly explained. Preview every substantive change in a batch. Mechanical connections remain delegated to the writing skill.
+   `kind` is `information`, `conclusion`, `details`, `maintenance` or `topics`; each change has `path`, `action` (`create`, `edit`, `delete`) and `text`. An edit shows exact replacement text with enough context to identify the edit; deletion describes what is removed. A rename is a deletion plus creation, explicitly explained. Preview every substantive change in a batch. Mechanical connections remain delegated to the writing skill. A `topics` preview targets only `research-topics.md`; its changed questions, statuses, related links and remaining questions are part of the approved text.
 2. Run `create --preview work/<preview>.json`. It creates a unique ID, replaces any older proposal, and records immutable preview content with a checksum. There is one active proposal per project; concurrent chats should coordinate rather than share pending approvals.
 3. Choose the presentation before responding. If `visualize` is listed in the current skills, read its complete SKILL.md and render the card by default, including on the first preview and every revision. Do not assume the message bridge is unavailable without rendering: the card feature-detects `window.openai.sendFollowUpMessage` at runtime. Follow the visualization skill's current rendering instructions. Run `render --id <ID> --output <new-absolute-authorized-visualization-path>` to generate the fragment from `assets/card.html`, then present it using the supported inline mechanism. The output path must be writable and visible to this conversation. Never require users to install a plugin or start a web server just to approve.
 4. Use text only when the visualization capability is absent, the user explicitly requests text, or a concrete rendering failure prevents the card. Then show the compact text preview and ask for `Approve ID: <ID>` or `Cancel ID: <ID>`. If the card renders but the message bridge is unavailable, it hides the buttons and shows a text fallback. Rendering failure uses the same registered ID and exact preview; no save is implied.

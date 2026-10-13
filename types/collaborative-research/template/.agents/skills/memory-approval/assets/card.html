@@ -4,6 +4,7 @@
     #__APPROVAL_ROOT__ .approval-panel { background: light-dark(#ffffff, #202125); color: light-dark(#202124, #f0f1f3); border: 1px solid light-dark(#dce2eb, #41454d); border-radius: 12px; padding: 18px; max-width: 560px; }
     #__APPROVAL_ROOT__ .approval-kind { color: light-dark(#1d4ed8, #93b7ff); font-weight: 500; }
     #__APPROVAL_ROOT__[data-kind="conclusion"] .approval-kind { color: light-dark(#a65308, #ffbf69); }
+    #__APPROVAL_ROOT__[data-kind="topics"] .approval-kind,
     #__APPROVAL_ROOT__[data-kind="details"] .approval-kind { color: light-dark(#525866, #b7bfcc); }
     #__APPROVAL_ROOT__ h3 { margin: 12px 0 8px; font-size: 1.1em; font-weight: 500; overflow-wrap: anywhere; }
     #__APPROVAL_ROOT__ .approval-copy { margin: 8px 0 18px; white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -46,7 +47,7 @@
       const message = action => `${action === 'approve' ? 'Одобряю' : 'Отменяю'} «${preview.title}». ID: ${preview.id}`;
       root.dataset.kind = preview.kind;
       root.querySelector('.approval-kind').textContent = {
-        information: 'Information', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update'
+        information: 'Information', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update', topics: 'Research Topics'
       }[preview.kind];
       root.querySelector('h3').textContent = preview.title;
       for (const change of preview.changes) {

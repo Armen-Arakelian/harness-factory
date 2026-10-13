@@ -19,6 +19,7 @@ Broad questions can develop across several conversations; the assistant should d
 | `nodes/` | Short information notes connected by meaningful links. |
 | `conclusions/` | Your short thoughts and conclusions, initiated by you. |
 | `details/` | Deeper explanations, evidence and limitations. |
+| `research-topics.md` | Your future questions, coverage statuses and links to existing research. |
 | `README.md` | Entry points and links to saved conclusions. |
 | `agent-memory/` | The assistant's working context, kept separate from your graph. |
 | `work/` | Temporary research output, outside permanent memory. |
@@ -34,6 +35,10 @@ You receive a compact preview with the exact text and destination. Supported cli
 Buttons disappear after use. **Approval sent** means the request was sent; the assistant confirms saving separately. Another ordinary message expires the proposal when the agent processes it. Old buttons may remain visible, but expired IDs are rejected. New chats, compaction and restoration require a fresh preview. There is one active proposal per project.
 
 Your conclusions matter as records of your understanding, but may be tentative or wrong. The assistant may challenge them with evidence and must not silently rewrite them. Ask to revise a conclusion when your view changes; revisions need approval too. The assistant may suggest information worth saving, but does not invent conclusions on your behalf.
+
+## Future Research Topics
+
+Say **"Add these topics to our research list"** or **"Review the research topics list."** Open questions are **Not explored** or **Needs depth**, with links and remaining gaps. On a requested review, sufficiently answered questions are proposed for removal; their results stay in the research notes. Every change needs approval. There are no automatic additions, reviews or completed-topic archives.
 
 ## Recall and Continue
 
