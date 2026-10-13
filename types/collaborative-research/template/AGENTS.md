@@ -34,6 +34,10 @@ Before other work on a user turn, if `work/memory-approvals.json` exists, handle
 - Keep nodes flat, links meaningful, and folder names unchanged. `.obsidian/graph.json` defines graph colors; do not change settings or instructions incidentally during memory operations.
 - For ordinary discussion, answer directly. Load a writing skill only when needed and verify only affected files after an approved write.
 
+## Project Modules
+
+Use `.agents/skills/add-module/SKILL.md` when the user describes a new reusable project capability, external integration or extension, even without saying "module". If a local module would help, briefly propose it before the normal design review and plan. Prefer existing skills for supported workflows; do not turn one-off tasks into modules or append suggestions to ordinary replies. Assess its design and likely context overhead without running it or testing it. Agree on a concise implementation plan before installation. Keep module instructions in their local skill folder; add only a short trigger/path here. Load them only for the relevant task. Module setup does not bypass existing memory approval or authorize installing external software, contacting people or background jobs beyond the agreed scope.
+
 ## GitHub Backup
 
 - Use `.agents/skills/setup-git/SKILL.md` for requested first-time GitHub setup and `.agents/skills/save-project/SKILL.md` for requested commit/push backups.

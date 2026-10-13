@@ -52,6 +52,10 @@ Colors distinguish folders; they do not create separate spatial regions. Relatio
 
 For a focused view, open a note such as an entry point from the Memory Map, run **Open local graph**, and start with depth **1** in the local graph filter settings. Increase depth to explore farther. The global graph remains available; this display choice does not limit the assistant's memory search.
 
+## Project-Specific Modules
+
+Describe a new capability or external connection you want in this project; the assistant can suggest a module without that keyword. You can also say **"Add a module for …"**. Existing workflows and one-off tasks need no new module. The assistant reviews when it loads instructions, what it reads and stores, and how often it updates data. If the design may inflate context, it explains why and suggests a smaller alternative. You agree on a short plan before the module is added to this project. The review does not run the module, perform tests or certify that it works. Existing memory approval rules remain in force.
+
 ## GitHub Backup
 
 GitHub is optional. Ask "Connect this project to a private GitHub repository at OWNER/REPOSITORY" for first-time setup. Git, GitHub CLI authentication, and working SSH access must be configured on this computer. The local skills guide setup and the first commit/push; no Factory installation is needed.

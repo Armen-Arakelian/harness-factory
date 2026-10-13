@@ -71,6 +71,10 @@ path:/^(nodes|people|conclusions|details)\// OR path:"glossary.md"
 
 For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.
 
+## Project-Specific Modules
+
+Describe a new capability or external connection you want in this project; the assistant can suggest a module without that keyword. You can also say **"Add a module for …"**. Existing workflows and one-off tasks need no new module. The assistant reviews when it loads instructions, what it reads and stores, and how often it updates data. If the design may inflate context, it explains why and suggests a smaller alternative. You agree on a short plan before the module is added to this project. The review does not run the module, perform tests or certify that it works. Existing memory approval rules remain in force.
+
 ## Backup and Reference
 
 GitHub is optional. After connecting a repository, say **"Save this project to GitHub."** Restore by cloning and reopening it; temporary files and chat history are not included. See the [backup instructions](../../docs/USER_GUIDE.md#connect-save-and-restore).

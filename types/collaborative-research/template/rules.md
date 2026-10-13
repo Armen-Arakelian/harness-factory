@@ -138,6 +138,12 @@ The default graph filter includes `nodes/`, `people/`, `conclusions/`, and `glos
 
 For focused browsing, open the local graph of the active note and start at depth 1, increasing depth when useful. This is an optional view, not a limit on agent recall. Preserve the global graph and current colors; do not alter settings or remove connections merely to make a view sparse.
 
+## Project Modules
+
+Optional extensions belong to this research project only. Use `add-module` to review a requested module's design, clarify missing scope, explain likely context costs and propose a leaner alternative where useful. This is a qualitative design assessment, not a benchmark or confirmation of runtime functionality. Do not execute the module or run tests to assess it.
+
+Agree on a short plan covering purpose, trigger, files read/written and proposed changes before adding it. That agreement covers the named module instructions and settings, plus a concise usage description; it does not approve research-content edits, change ownership of memory or silently add automatic-write permissions. Existing approval workflows still govern module writes. Keep the main instructions to a trigger and path; load the full local skill and supporting resources only when needed. Changes apply here, not to Factory or other projects.
+
 ## Lightweight Verification
 
 After a user-approved memory write, check only affected files: approved text, correct folders, meaningful labels, and resolution of changed links. For approved renames or deletion, search incoming links and maintain the required references automatically; preview the rename/deletion and any substantive changes, not every mechanical link edit. Do not run whole-vault audits or produce compliance task lists during ordinary discussion.
