@@ -18,7 +18,7 @@ For setup, terminal commands and optional GitHub backup, read the [user guide](d
 
 ```text
 AGENTS.md          Factory instructions for Codex
-.agents/skills/    Project creation and GitHub workflows
+.agents/skills/    Creation, maintenance and GitHub workflows
 scripts/init.py    Offline project generator
 types/             Self-contained project blueprints
 docs/USER_GUIDE.md  Setup and usage
@@ -37,3 +37,5 @@ Use [the current descriptor](types/collaborative-research/project.json) as an ex
 The generator discovers types automatically and copies hidden files and empty directories. Templates use UTF-8 text; binary files and symlinks are unsupported. Identical inputs and templates produce identical content.
 
 Template updates affect new projects only. Existing projects need an explicit update; their saved research is not replaced automatically.
+
+For changes to Factory itself or its templates, use [update-factory](.agents/skills/update-factory/SKILL.md). It checks affected behavior and keeps user documentation concise before requested publication.

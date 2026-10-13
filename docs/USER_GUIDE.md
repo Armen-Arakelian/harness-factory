@@ -95,6 +95,10 @@ git clone git@github.com:OWNER/REPOSITORY.git
 
 Backups include project instructions, graph settings and saved memory. They exclude temporary `work/` files, credentials and personal Obsidian workspace state; chat history is not backed up. Pending approvals require a fresh preview after restoration. To back up Factory itself, provide its own repository destination separately.
 
+## Update the Factory
+
+Open Factory in Codex and describe the change you want. `update-factory` implements it, checks affected behavior and updates the relevant user documentation. Existing research projects change only when you request a migration. Say **"Save Factory to GitHub"** to publish; its save workflow checks readiness first.
+
 ## Share the Factory
 
 Share its Git repository or a clean archive. For archives, exclude `.factory.local.json`, `.git/`, root `.obsidian/` and root `work/`. Keep hidden template files and skills. Recipients configure their own GitHub access and owner preferences.
