@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:/^(nodes|conclusions)\\//",
+  "search": "(path:/^(nodes|conclusions)\\//) OR path:\"glossary.md\"",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
@@ -26,6 +26,13 @@
       "color": {
         "a": 1,
         "rgb": 10265519
+      }
+    },
+    {
+      "query": "path:\"glossary.md\"",
+      "color": {
+        "a": 1,
+        "rgb": 9133302
       }
     }
   ],

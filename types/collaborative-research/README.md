@@ -40,6 +40,12 @@ Your conclusions matter as records of your understanding, but may be tentative o
 
 Say **"Add these topics to our research list"** or **"Review the research topics list."** Open questions are **Not explored** or **Needs depth**, with links and remaining gaps. On a requested review, sufficiently answered questions are proposed for removal; their results stay in the research notes. Every change needs approval. There are no automatic additions, reviews or completed-topic archives.
 
+## Optional Glossary
+
+Ask **"Create a glossary"** and choose term languages and an explanation language. It starts empty, then updates automatically from each successfully saved information note and its saved details, without entry approvals. Say **"Review the glossary across the project"** to include earlier research or reconcile terms; full reviews are never automatic. Ask to disable it to pause maintenance.
+
+The glossary is a purple, link-free helper node. It is optional and has no language defaults imposed during project creation.
+
 ## Recall and Continue
 
 Ask **"What did I think about this?"** or **"Recall our research on this topic."** The assistant searches relevant notes and conclusions, including unlinked ones, and separates your saved view from its current assessment.
@@ -53,7 +59,7 @@ Fresh sessions should recover context from these files. These workflows depend o
 The default graph shows **blue information nodes** and **orange conclusions**. **Gray details** are hidden; to include them, use this graph search filter:
 
 ```text
-path:/^(nodes|conclusions|details)\//
+path:/^(nodes|conclusions|details)\// OR path:"glossary.md"
 ```
 
 For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.

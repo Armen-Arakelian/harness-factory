@@ -33,6 +33,14 @@ Active entries contain a question, either `Not explored` or `Needs depth`, usefu
 
 A requested review searches saved material and proposes status, link and remaining-question changes. It does not start new research or write the list automatically. Additions, edits, reordering, removal and status changes use an exact `topics` preview through `memory-approval`. Preserve unrelated entries and verify links after the approved write. New evidence or changed scope can justify adding an open question again, also through a user request and approval. The list has no background maintenance or scheduling; editing it alone does not trigger a research checkpoint.
 
+## Glossary
+
+`glossary.md` is an optional agent-owned terminology aid, created only when the user asks. Use `manage-glossary` to ask for missing term languages and the explanation language, then create an empty file. Creation enables bounded maintenance without per-entry approval; it does not authorize historical backfill. Language settings belong to this project, not Factory defaults. Configured translations and explanations are the exception to the English-content convention.
+
+After a successful substantive information save, extract terms only from the nodes and details saved in that operation. Update relevant entries in one batch; leave unrelated terms unchanged. Link-only changes, ordinary messages, conclusions, topics and agent-memory checkpoints do not trigger glossary updates. No graph traversal or full historical scan occurs during a save. A full glossary review requires a separate user request and may reconcile terms across saved nodes and details without per-entry approval.
+
+Keep meanings short, scoped and qualified where uncertain; distinguish different senses with context. The glossary contains no note links or backlinks and appears as a purple helper node. It is neither evidence nor a user conclusion. Its permission does not extend to curated memory or settings. A glossary error must not undo or repeat a successful curated save. Disable maintenance on request without deleting its entries.
+
 ## User Conclusions in Research
 
 Conclusions capture the user's evolving picture of the research. Give relevant conclusions high attention when framing a research answer, choosing what to investigate, or recalling the user's view. Their importance does not establish factual correctness: a conclusion may be approximate, mistaken, outdated, or broader than the evidence supports.
@@ -109,9 +117,9 @@ These are content conventions, not mandatory metadata schemas. Adapt headings to
 
 ## Graph Presentation
 
-Folder membership defines color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` gray (`#9CA3AF`). Do not add color fields or mandatory type tags to notes.
+Folder membership defines research-note color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` gray (`#9CA3AF`). The optional root `glossary.md` has its own purple (`#8B5CF6`) group. Do not add color fields or mandatory type tags to notes.
 
-The default graph filter includes only `nodes/` and `conclusions/`. The detail group is already configured for when details are shown. Instructions, skills, the README, `work/`, and `agent-memory/` are outside the main graph. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
+The default graph filter includes `nodes/`, `conclusions/`, and `glossary.md` if created. The detail group is already configured for when details are shown. Instructions, skills, the README, `work/`, and `agent-memory/` are outside the main graph. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
 
 For focused browsing, open the local graph of the active note and start at depth 1, increasing depth when useful. This is an optional view, not a limit on agent recall. Preserve the global graph and current colors; do not alter settings or remove connections merely to make a view sparse.
 

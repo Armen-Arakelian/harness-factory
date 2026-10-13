@@ -1,6 +1,6 @@
 # Collaborative Research Project Instructions
 
-This is an independent research project. Keep saved content in English.
+This is an independent research project. Keep saved content in English, except the explicitly configured glossary languages.
 Read `rules.md` for research principles and memory conventions, and `README.md` for the topic and entry points.
 Apply the research approach in `rules.md` throughout research and discussion, not only when saving memory.
 
@@ -25,9 +25,10 @@ Before other work on a user turn, if `work/memory-approvals.json` exists, handle
 - Research requests and phrases such as "remember this" trigger a preview; they do not bypass approval. Use `memory-approval` to register and validate previews, with buttons when supported and text fallback otherwise. An immediately accepted identical preview needs no second approval; old chat approvals do not bypass the registry.
 - Use `.agents/skills/update-memory/SKILL.md` for information notes, details, and maintenance of existing memory. Use `.agents/skills/create-conclusion/SKILL.md` when the user initiates a new conclusion.
 - Use `.agents/skills/manage-research-topics/SKILL.md` when the user asks to show, add, revise or review future research topics. Changes to `research-topics.md` require a requested preview and accepted approval; never maintain it automatically after research or conclusion saves. Topic-list maintenance alone creates no research checkpoint.
+- Use `.agents/skills/manage-glossary/SKILL.md` when asked to create or review the optional glossary, or after a successful substantive information save if it is enabled. Only `glossary.md` may be maintained under this separate permission; follow its current-save scope and configured languages.
 - Only the user initiates conclusions. Do not propose conclusions of your own or automatically extract them from research.
 - You may occasionally suggest saving a significant reusable result in `nodes/` or `details/`. Keep the suggestion short; do not append task lists or proposals to every answer.
-- Use `.agents/skills/sync-agent-memory/SKILL.md` after meaningful research results, direction changes, completed user reviews, approved memory edits affecting active work, or an explicit sync or handoff request. Ordinary discussion and read-only recall need no checkpoint. You may update only `agent-memory/` without a per-entry preview under the bounded policy in `rules.md`. This permission does not extend to user-controlled memory, instructions, skills, settings, other projects, or machine-wide memory.
+- Use `.agents/skills/sync-agent-memory/SKILL.md` after meaningful research results, direction changes, completed user reviews, approved memory edits affecting active work, or an explicit sync or handoff request. Ordinary discussion and read-only recall need no checkpoint. You may update only `agent-memory/` without a per-entry preview under the bounded policy in `rules.md`. This agent-memory permission does not extend to other files; the optional glossary has its own narrow policy below in `rules.md`. User-controlled memory, instructions, skills, settings, other projects and machine-wide memory remain outside both automatic-write permissions.
 - Authorized research may produce temporary files in `work/`. They are not permanent memory; do not promote them without approval. Do not automatically delete them.
 - Keep nodes flat, links meaningful, and folder names unchanged. `.obsidian/graph.json` defines graph colors; do not change settings or instructions incidentally during memory operations.
 - For ordinary discussion, answer directly. Load a writing skill only when needed and verify only affected files after an approved write.
