@@ -1,8 +1,11 @@
 # Collaborative Research Project Instructions
 
 This is an independent research project. Keep saved content in English, except the explicitly configured glossary languages.
-Read `rules.md` for research principles and memory conventions, and `README.md` for the topic and entry points.
-Apply the research approach in `rules.md` throughout research and discussion, not only when saving memory.
+## Entering the Project
+
+Read `rules.md` before project work, unless its current contents are already loaded. Use README's Topic and Memory Map and the compact `agent-memory/state.md` for orientation; the Reading section below guides further retrieval. Apply the research approach throughout discussion, not only saves. README is an additional entry route; `CLAUDE.md` and `GEMINI.md` only import this file. Do not recursively reread entry files or preload all skills.
+
+Follow the instruction and conflict policy in `rules.md`. At the first relevant project task, establish access to its actual files and needed tools from the available environment; an attachment is not proof of a writable vault. If an instruction or required tool is unavailable, name the limitation and continue useful read-only work. Local skills can be read by their paths even when the application does not auto-discover them. Before a memory write, the selected workflow and Python approval helper must be available; otherwise offer a proposal without saving or claiming registry validation. Inline cards require the supported message bridge; use the existing text fallback when unavailable. No startup transcript, checkpoint or repeated capability checklist is required.
 
 ## Pending Approval Turns
 
@@ -13,6 +16,7 @@ Before other work on a user turn, if `work/memory-approvals.json` exists, handle
 - Start with the README map, the compact `agent-memory/state.md`, and relevant short notes in `nodes/` and `people/`. Agent memory belongs to this project only.
 - Before answering about a topic, retrieve its relevant notes in `conclusions/`, including useful unlinked conclusions. They are high-priority memory of the user's evolving understanding, including tentative or mistaken thoughts. Assess their factual scope and evidence independently; discuss material objections without editing saved wording.
 - Use `.agents/skills/recall-memory/SKILL.md` for recall requests, research depending on prior work, and relevant memory retrieval after a fresh session or compaction. Search beyond the map and links, and report the user's saved thought faithfully. Recall itself is read-only; unrelated simple replies need no memory workflow.
+- Use `.agents/skills/review-conclusions/SKILL.md` for a requested review of all conclusions or a specified subset. Search relevant information, people and details beyond their links; report only grounded concerns or an honest clean/insufficient-evidence result. The review is read-only and creates no agent-memory checkpoint.
 - Recall saved views from relevant short notes first. For evidence checks, locate useful detail sections and read their qualifications; expand for gaps or conflicts without a fixed file count or graph depth. Do not bulk-load the vault or `work/` into context.
 - Consult relevant entries in `agent-memory/insights.md` and applicable preferences in `agent-memory/user.md` on demand. Keep agent hypotheses distinct from evidence and the user's saved thoughts. Recheck time-sensitive claims.
 - After context compaction or a fresh session, return to the map, compact agent state and relevant saved conclusions. Reconcile the recorded next step with the current request and available artifacts rather than relying only on a conversation summary or stale state.

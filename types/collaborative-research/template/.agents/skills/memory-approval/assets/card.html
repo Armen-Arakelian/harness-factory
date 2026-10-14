@@ -50,7 +50,7 @@
       const message = action => `${action === 'approve' ? 'Одобряю' : 'Отменяю'} «${preview.title}». ID: ${preview.id}`;
       root.dataset.kind = preview.kind;
       root.querySelector('.approval-kind').textContent = {
-        information: 'Information', person: 'Person', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update', topics: 'Research Topics'
+        information: 'Information', batch: 'Note package', person: 'Person', conclusion: 'Conclusion', details: 'Details', maintenance: 'Memory update', topics: 'Research Topics'
       }[preview.kind];
       root.querySelector('h3').textContent = preview.title;
       for (const change of preview.changes) {

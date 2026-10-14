@@ -23,12 +23,14 @@ def digest(value):
 def validate(preview):
     if not isinstance(preview, dict) or set(preview) != {"kind", "title", "changes"}:
         raise ValueError("preview requires only kind, title and changes")
-    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics", "person"}:
+    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics", "person", "batch"}:
         raise ValueError("unsupported preview kind")
     if not isinstance(preview["title"], str) or not preview["title"].strip() or "\n" in preview["title"]:
         raise ValueError("title must be a nonempty single line")
     if not isinstance(preview["changes"], list) or not preview["changes"]:
         raise ValueError("changes must be a nonempty list")
+    if preview["kind"] == "batch" and len(preview["changes"]) < 2:
+        raise ValueError("batch preview requires at least two substantive changes")
     seen = set()
     for change in preview["changes"]:
         if not isinstance(change, dict) or set(change) != {"path", "action", "text"}:
@@ -49,8 +51,8 @@ def validate(preview):
         if not isinstance(change["text"], str) or not change["text"].strip():
             raise ValueError("provide exact substantive text, or a deletion description")
         if path.parts[0] == "people":
-            if preview["kind"] not in {"person", "maintenance"}:
-                raise ValueError("people changes use person or maintenance previews")
+            if preview["kind"] not in {"person", "maintenance", "batch"}:
+                raise ValueError("people changes use person, batch or maintenance previews")
             if change["action"] != "delete":
                 sections = change["text"].split("---\n", 2)
                 if len(sections) != 3 or sections[0]:

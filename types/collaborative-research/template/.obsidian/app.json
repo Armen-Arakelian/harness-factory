@@ -1,0 +1,6 @@
+{
+  "userIgnoreFilters": [
+    "/^(agent-memory|work|docs|\\.agents|\\.obsidian)\\//",
+    "/^(AGENTS|CLAUDE|GEMINI|README|rules|research-topics|USER_GUIDE)\\.md$/"
+  ]
+}
