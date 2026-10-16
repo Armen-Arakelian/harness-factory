@@ -29,7 +29,7 @@ The project README starts with a short agent entry guide. `AGENTS.md` routes wor
 | `agent-memory/` | The assistant's working context, kept separate from your graph. |
 | `work/` | Temporary research output, outside permanent memory. |
 
-Notes stay flat and can have many-to-many connections. The assistant starts with relevant short notes and opens deeper material when needed.
+Notes stay flat and can have many-to-many connections. The assistant starts with relevant short notes and opens deeper material when needed. Information notes normally have one dedicated detail file when deeper material is useful; simple notes need none. Shared details are reserved for a coherent common subject, not merely a shared source. The assistant assesses this separately for every note in a package and includes proposed details in the same approval.
 
 ## Save and Approve
 
@@ -71,9 +71,9 @@ Fresh sessions should recover context from these files. These workflows depend o
 
 ## View the Graph
 
-The default graph shows **blue information nodes**, **orange conclusions**, **green people**, **gray details** and the optional **purple glossary**. Its search starts empty for your own queries; color groups are independent of that search.
+The default graph shows **blue information nodes**, **orange conclusions**, **green people** and the optional **purple glossary**. Its search starts empty for your own queries; color groups are independent of that search.
 
-Native **Settings → Files and links → Excluded files** removes project instructions, overview/topic-list files, documentation, temporary files and agent memory from the graph, Obsidian Search and Unlinked Mentions. The files remain in the file tree and accessible to the assistant. Research content, including details, stays searchable. Adjust this list to include a service file; no community plugin is needed.
+Native **Settings → Files and links → Excluded files** removes project instructions, overview/topic-list files, documentation, temporary files, agent memory and details from the graph, Obsidian Search and Unlinked Mentions. The files remain in the file tree and accessible to the assistant. Information notes, people, conclusions and the glossary stay searchable. Details open through note links or the file tree and remain accessible to the assistant. Adjust this list to include an excluded file; no community plugin is needed.
 
 For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.
 

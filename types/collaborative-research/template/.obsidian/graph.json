@@ -22,13 +22,6 @@
       }
     },
     {
-      "query": "path:/^details\\//",
-      "color": {
-        "a": 1,
-        "rgb": 10265519
-      }
-    },
-    {
       "query": "path:\"glossary.md\"",
       "color": {
         "a": 1,
