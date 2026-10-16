@@ -14,6 +14,7 @@ This project creates independent projects from self-contained type blueprints.
 ## Developing Factory
 
 - Use `.agents/skills/update-factory/SKILL.md` for changes to Factory or its blueprints, and its publication check before saving Factory updates to GitHub.
+- Develop Factory changes on a task branch, never on `main`. Requested publication pushes that branch and opens or updates a pull request; merge only on an explicit user request. Use a separate worktree for simultaneous tasks, and never switch a shared checkout while another task is using it.
 - Recover a fresh task from the current request, files and Git diff. Keep changes scoped, preserve unrelated work, and verify affected behavior in disposable generated projects outside Factory.
 - When user-facing behavior changes, update its primary description: root README for overview, User Guide for shared setup, type README for template usage, generated README for everyday project use. Keep implementation details in agent instructions; replace outdated text and link rather than repeat.
 - Internal changes without behavior changes need no new user prose. Reuse current test evidence or run the missing checks; do not assume validation from an old chat or commit message.

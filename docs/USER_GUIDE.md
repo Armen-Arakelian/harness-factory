@@ -97,7 +97,7 @@ Backups include project instructions, graph settings and saved memory. They excl
 
 ## Update the Factory
 
-Open Factory in Codex and describe the change you want. `update-factory` implements it, checks affected behavior and updates the relevant user documentation. Existing research projects change only when you request a migration. Say **"Save Factory to GitHub"** to publish; its save workflow checks readiness first.
+Open Factory in Codex and describe the change you want. `update-factory` implements it, checks affected behavior and updates the relevant user documentation. Existing research projects change only when you request a migration. Say **"Save Factory to GitHub"** to upload a task branch and open or update a pull request after readiness checks. Review the PR and ask to merge when ready; saving alone never merges it. The default branch uses PR-only changes, with a generator CI check before merging. For simultaneous tasks, use separate worktrees; separate chats sharing one folder also share its files and checked-out branch. This contribution workflow applies to Factory, not generated projects' backup workflows.
 
 ## Share the Factory
 
