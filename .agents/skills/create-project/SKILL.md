@@ -1,6 +1,6 @@
 ---
 name: create-project
-description: Create an independent project from a supported Project Factory type when the user asks to initialize a new project, including Collaborative Research projects for Codex and Obsidian.
+description: Create an independent project from a supported Harness Factory type when the user asks to initialize a new project, including Collaborative Research projects for Codex and Obsidian.
 ---
 
 # Create a Project

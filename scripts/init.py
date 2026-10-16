@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create an independent project from a Project Factory type (standard library only)."""
+"""Create an independent project from a Harness Factory type (standard library only)."""
 
 import argparse
 import json
@@ -70,7 +70,7 @@ def generate(type_id, replacements, destination):
         raise ValueError(f"missing or unsupported template directory: {template_root}")
     resolved = destination.resolve()
     if resolved == FACTORY_ROOT or FACTORY_ROOT in resolved.parents:
-        raise ValueError("destination must be outside Project Factory")
+        raise ValueError("destination must be outside Harness Factory")
     files, directories = {}, []
     pattern = re.compile("|".join(re.escape(token) for token in replacements))
     for source in sorted(template_root.rglob("*")):

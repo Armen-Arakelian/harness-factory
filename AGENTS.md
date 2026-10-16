@@ -1,4 +1,4 @@
-# Project Factory
+# Harness Factory
 
 This project creates independent projects from self-contained type blueprints.
 

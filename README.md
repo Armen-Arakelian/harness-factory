@@ -1,4 +1,4 @@
-# Project Factory
+# Harness Factory
 
 Create independent Codex projects from reusable templates. Each project contains its own instructions, skills and settings; it can be moved or shared without the Factory.
 

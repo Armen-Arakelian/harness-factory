@@ -1,4 +1,4 @@
-# Project Factory User Guide
+# Harness Factory User Guide
 
 Open Factory in Codex, choose a template, and provide a name, topic and destination. Open the generated project separately and work there. GitHub backup is optional.
 

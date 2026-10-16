@@ -1,9 +1,9 @@
 ---
 name: update-factory
-description: Develop Project Factory or a project-type blueprint, verify affected behavior and keep concise user documentation current. Also checks publication readiness before the Factory save-project workflow. Does not migrate existing projects or publish without a user request.
+description: Develop Harness Factory or a project-type blueprint, verify affected behavior and keep concise user documentation current. Also checks publication readiness before the Factory save-project workflow. Does not migrate existing projects or publish without a user request.
 ---
 
-# Update Project Factory
+# Update Harness Factory
 
 Resolve the Factory root three directories above this skill folder. Read its `AGENTS.md`. This workflow lives only in Factory; generated research projects use their own skills.
 

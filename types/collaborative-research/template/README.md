@@ -22,7 +22,7 @@ No conclusions saved yet. Add a short link here when the user approves a new con
 
 ## Working with This Project
 
-Open this folder in Codex and as a vault in Obsidian. No community plugins or connection to the Project Factory are required.
+Open this folder in Codex and as a vault in Obsidian. No community plugins or connection to the Harness Factory are required.
 
 - `nodes/`: short information notes, without mandatory entity types.
 - `people/`: short profiles, light green for a known personal contact route and darker green otherwise.
