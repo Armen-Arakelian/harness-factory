@@ -1,0 +1,21 @@
+name: Factory checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  factory-generation:
+    name: Factory generation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check all project blueprints
+        run: python3 .agents/skills/update-factory/scripts/check_factory.py
