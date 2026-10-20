@@ -21,7 +21,7 @@ Apply these principles throughout research and discussion, not only when saving 
 
 ## Ownership and Approval
 
-User-controlled permanent memory consists of `README.md`, `research-topics.md`, `nodes/`, `people/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
+User-controlled permanent memory consists of `README.md`, `research-topics.md`, `ideas.md`, `nodes/`, `people/`, `conclusions/`, and `details/`. Creation and substantive edits, renames and deletion require approval of a compact content preview. Do not write proposed content or its graph links before approval, including files marked "draft".
 
 One preview and accepted ID may cover several useful notes from any material, including mixed people, information and details and creations/updates. Select each entry for independent value, reuse existing notes where appropriate, and do not fragment source material mechanically. The `update-memory` batch workflow shows all substantive entries with one approval; it does not authorize extra notes, unsolicited conclusions or automatic consolidation.
 
@@ -34,6 +34,14 @@ The user owns conclusions. Only a user request initiates one, and a conclusion m
 `agent-memory/` is a separate, project-local durable layer owned by the agent. Its bounded automatic-write policy is defined below; it does not bypass approval for user-controlled memory.
 
 `work/` is for temporary files from authorized research. It is outside permanent memory. Promotion into memory requires approval; deletion of working files is not automatic.
+
+## Ideas
+
+`ideas.md` is one user-controlled list of possible approaches and opportunities, visible as a purple graph node. All ideas stay in that file, with a descriptive heading, user-selected status and a few sentences capturing their essence. It is not an information note, conclusion, evidence source or task/coverage tracker. Use useful links to existing research for depth instead of copying reports into entries; no individual idea files or compulsory reverse links are needed.
+
+Ratings are `Tentative` (worth considering), `Promising` (a good idea) and `💥 Cannon` (an outstanding idea in the user's judgment). They express the user's assessment, not truth, confidence or completion. Ask for a missing or ambiguous rating; do not silently rate, promote, demote or remove ideas. Use `manage-ideas` for requested additions, revisions, rating changes, reordering, removal or review. Changes require an exact `ideas` preview and accepted approval; agent suggestions do not authorize saving. No automatic collection, list review, glossary update or checkpoint follows an idea-list edit alone.
+
+Retrieve relevant headings and entries when the question concerns an idea or depends on prior plans. Do not load the entire list on every turn. Existing conclusions remain distinct, high-priority memory of the user's understanding; neither an idea nor its rating replaces them.
 
 ## Research Topics
 
@@ -60,7 +68,7 @@ People remain user-controlled memory. The agent may suggest a relevant person sa
 
 `glossary.md` is an optional agent-owned terminology aid, created only when the user asks. Use `manage-glossary` to ask for missing term languages and the explanation language, then create an empty file. Creation enables bounded maintenance without per-entry approval; it does not authorize historical backfill. Language settings belong to this project, not Factory defaults. Configured translations and explanations are the exception to the English-content convention.
 
-After a successful substantive information save, extract terms only from the nodes and details saved in that operation. Update relevant entries in one batch; leave unrelated terms unchanged. People-note saves, link-only changes, ordinary messages, conclusions, topics and agent-memory checkpoints do not trigger glossary updates. No graph traversal or full historical scan occurs during a save. A full glossary review requires a separate user request and may reconcile terms across saved nodes and details without per-entry approval.
+After a successful substantive information save, extract terms only from the nodes and details saved in that operation. Update relevant entries in one batch; leave unrelated terms unchanged. People-note saves, link-only changes, ordinary messages, conclusions, topics, ideas and agent-memory checkpoints do not trigger glossary updates. No graph traversal or full historical scan occurs during a save. A full glossary review requires a separate user request and may reconcile terms across saved nodes and details without per-entry approval.
 
 Keep meanings short, scoped and qualified where uncertain; distinguish different senses with context. The glossary contains no note links or backlinks and appears as a purple helper node. It is neither evidence nor a user conclusion. Its permission does not extend to curated memory or settings. A glossary error must not undo or repeat a successful curated save. Disable maintenance on request without deleting its entries.
 
@@ -153,9 +161,9 @@ These are content conventions, not mandatory metadata schemas. Adapt headings to
 
 ## Graph Presentation
 
-Folder membership defines research-note color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` excluded from the graph. The optional root `glossary.md` has its own purple (`#8B5CF6`) group. People groups use `contact_status`: `contact` light green (`#91B89A`) and `public-figure` muted darker green (`#5B8A70`), tuned for a dark graph background. Color is also described in the note status; it is not the only way to identify access. Do not add per-note color fields or a general node taxonomy.
+Folder membership defines research-note color in `.obsidian/graph.json`: `nodes/` blue (`#3B82F6`), `conclusions/` orange (`#F59E0B`), `details/` excluded from the graph. Root `ideas.md` and the optional `glossary.md` use purple (`#8B5CF6`) groups; only ideas may contain note links. People groups use `contact_status`: `contact` light green (`#91B89A`) and `public-figure` muted darker green (`#5B8A70`), tuned for a dark graph background. Color is also described in the note status; it is not the only way to identify access. Do not add per-note color fields or a general node taxonomy.
 
-The default graph search is empty and belongs to the user; do not restore a permanent scope query or overwrite their search during memory operations. Keep colors in the separate `colorGroups` configuration. `.obsidian/app.json` uses native `userIgnoreFilters` to exclude project instructions, overview/topic-list files, `docs/`, `work/`, `agent-memory/` and `details/` from Obsidian Search, Graph and Unlinked Mentions. Excluded files remain in the file tree and accessible to the agent; Obsidian exclusions are not recall or approval boundaries. `nodes/`, `people/`, `conclusions/` and the optional glossary remain included. Details stay available through short-note links, the file tree and direct agent retrieval; their exclusion must not cause evidence to be skipped. This is an exclusion list, not a whitelist for every future file. Change it only for a requested settings change, preserving existing preferences. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
+The default graph search is empty and belongs to the user; do not restore a permanent scope query or overwrite their search during memory operations. Keep colors in the separate `colorGroups` configuration. `.obsidian/app.json` uses native `userIgnoreFilters` to exclude project instructions, overview/topic-list files, `docs/`, `work/`, `agent-memory/` and `details/` from Obsidian Search, Graph and Unlinked Mentions. Excluded files remain in the file tree and accessible to the agent; Obsidian exclusions are not recall or approval boundaries. `nodes/`, `people/`, `conclusions/`, `ideas.md` and the optional glossary remain included. Details stay available through short-note links, the file tree and direct agent retrieval; their exclusion must not cause evidence to be skipped. This is an exclusion list, not a whitelist for every future file. Change it only for a requested settings change, preserving existing preferences. This is a colored linked graph, not a spatial partition. Plain-text relationship labels are visible inside notes; standard graph edges do not show them.
 
 For focused browsing, open the local graph of the active note and start at depth 1, increasing depth when useful. This is an optional view, not a limit on agent recall. Preserve the global graph and current colors; do not alter settings or remove connections merely to make a view sparse.
 

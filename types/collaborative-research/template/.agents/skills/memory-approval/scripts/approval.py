@@ -23,7 +23,7 @@ def digest(value):
 def validate(preview):
     if not isinstance(preview, dict) or set(preview) != {"kind", "title", "changes"}:
         raise ValueError("preview requires only kind, title and changes")
-    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics", "person", "batch"}:
+    if preview["kind"] not in {"information", "conclusion", "details", "maintenance", "topics", "ideas", "person", "batch"}:
         raise ValueError("unsupported preview kind")
     if not isinstance(preview["title"], str) or not preview["title"].strip() or "\n" in preview["title"]:
         raise ValueError("title must be a nonempty single line")
@@ -39,12 +39,14 @@ def validate(preview):
         if not isinstance(name, str) or "\\" in name:
             raise ValueError("use project-relative paths")
         path = Path(name)
-        allowed = name in {"README.md", "research-topics.md"} or (len(path.parts) == 2 and
+        allowed = name in {"README.md", "research-topics.md", "ideas.md"} or (len(path.parts) == 2 and
                   path.parts[0] in {"nodes", "people", "conclusions", "details"} and path.suffix == ".md")
         if not allowed or path.is_absolute() or ".." in path.parts or name in seen:
             raise ValueError("invalid or duplicate curated destination")
         if (preview["kind"] == "topics") != (name == "research-topics.md"):
             raise ValueError("topics previews target only research-topics.md")
+        if (preview["kind"] == "ideas") != (name == "ideas.md"):
+            raise ValueError("ideas previews target only ideas.md")
         seen.add(name)
         if change["action"] not in {"create", "edit", "delete"}:
             raise ValueError("unsupported action; preview renames as deletion plus creation")

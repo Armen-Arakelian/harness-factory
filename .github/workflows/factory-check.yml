@@ -19,3 +19,5 @@ jobs:
           persist-credentials: false
       - name: Check all project blueprints
         run: python3 .agents/skills/update-factory/scripts/check_factory.py
+      - name: Check memory approval boundaries
+        run: python3 -m unittest discover -s tests -v
