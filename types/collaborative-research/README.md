@@ -24,6 +24,7 @@ The project README starts with a short agent entry guide. `AGENTS.md` routes wor
 | `people/` | Relevant people, with or without a known personal contact route. |
 | `conclusions/` | Your short thoughts and conclusions, initiated by you. |
 | `details/` | Deeper explanations, evidence and limitations. |
+| `ideas.md` | Your short ideas, ratings and links, together in one purple node. |
 | `research-topics.md` | Your future questions, coverage statuses and links to existing research. |
 | `README.md` | Entry points and links to saved conclusions. |
 | `agent-memory/` | The assistant's working context, kept separate from your graph. |
@@ -42,6 +43,10 @@ When material warrants several useful records, the assistant can propose one pac
 Buttons disappear after use. **Approval sent** means the request was sent; the assistant confirms saving separately. Another ordinary message expires the proposal when the agent processes it. Old buttons may remain visible, but expired IDs are rejected. New chats, compaction and restoration require a fresh preview. There is one active proposal per project.
 
 Your conclusions matter as records of your understanding, but may be tentative or wrong. The assistant may challenge them with evidence and must not silently rewrite them. Ask to revise a conclusion when your view changes; revisions need approval too. The assistant may suggest information worth saving, but does not invent conclusions on your behalf.
+
+## Ideas
+
+Ask **"Save this idea as Promising: …"**, **"Show our ideas"** or **"Change this idea to Cannon."** All ideas stay in the purple ideas list, with a short description, a user-selected rating — **Tentative**, **Promising** or **💥 Cannon** — and useful links for depth. Changes require approval; the assistant never fills or rates the list automatically.
 
 ## Future Research Topics
 
@@ -71,9 +76,9 @@ Fresh sessions should recover context from these files. These workflows depend o
 
 ## View the Graph
 
-The default graph shows **blue information nodes**, **orange conclusions**, **green people** and the optional **purple glossary**. Its search starts empty for your own queries; color groups are independent of that search.
+The default graph shows **blue information nodes**, **orange conclusions**, **green people**, a **purple ideas list** and the optional **purple glossary**. Its search starts empty for your own queries; color groups are independent of that search.
 
-Native **Settings → Files and links → Excluded files** removes project instructions, overview/topic-list files, documentation, temporary files, agent memory and details from the graph, Obsidian Search and Unlinked Mentions. The files remain in the file tree and accessible to the assistant. Information notes, people, conclusions and the glossary stay searchable. Details open through note links or the file tree and remain accessible to the assistant. Adjust this list to include an excluded file; no community plugin is needed.
+Native **Settings → Files and links → Excluded files** removes project instructions, overview/topic-list files, documentation, temporary files, agent memory and details from the graph, Obsidian Search and Unlinked Mentions. The files remain in the file tree and accessible to the assistant. Information notes, people, conclusions, ideas and the glossary stay searchable. Details open through note links or the file tree and remain accessible to the assistant. Adjust this list to include an excluded file; no community plugin is needed.
 
 For a focused view, open a note's local graph at depth 1 and expand as needed. Colors identify folders, not separate spatial regions; relationship descriptions appear in notes rather than on graph edges. Agent memory and temporary output stay outside the main graph.
 

@@ -41,6 +41,13 @@
         "a": 1,
         "rgb": 5999216
       }
+    },
+    {
+      "query": "path:/^ideas\\.md$/",
+      "color": {
+        "a": 1,
+        "rgb": 9133302
+      }
     }
   ],
   "collapse-display": true,
