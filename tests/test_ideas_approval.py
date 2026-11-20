@@ -29,12 +29,20 @@ class IdeasApprovalTests(unittest.TestCase):
         }
 
     def call(self, *args):
-        return subprocess.run([sys.executable, str(self.helper), *args], capture_output=True, text=True)
+        return subprocess.run([sys.executable, str(self.helper), *args, "--session", "ideas-test"], capture_output=True, text=True)
 
     def register(self, preview=None, success=True):
         path = Path(self.temp.name) / "preview.json"
         path.write_text(json.dumps(preview or self.preview, ensure_ascii=False), encoding="utf-8")
-        result = self.call("create", "--preview", str(path))
+        basis = Path(self.temp.name) / "basis.json"
+        targets = [c["path"] for c in (preview or self.preview)["changes"]]
+        snapshot = self.call("snapshot", "--paths", *targets)
+        if snapshot.returncode:
+            if not success:
+                return {"status": "rejected"}
+            self.fail(snapshot.stdout)
+        basis.write_text(snapshot.stdout)
+        result = self.call("create", "--preview", str(path), "--basis", str(basis))
         self.assertEqual(result.returncode == 0, success, result.stdout + result.stderr)
         return json.loads(result.stdout)
 
@@ -73,7 +81,7 @@ class IdeasApprovalTests(unittest.TestCase):
         pending = self.register()
         path = self.project / "work/memory-approvals.json"
         record = json.loads(path.read_text())
-        record["preview"]["changes"][0]["text"] += " Unapproved change."
+        record["records"][pending["id"]]["preview"]["changes"][0]["text"] += " Unapproved change."
         path.write_text(json.dumps(record))
         self.assertNotEqual(self.call("approve", "--id", pending["id"]).returncode, 0)
 
